@@ -26,14 +26,16 @@ const prefix = configFile.prefix;
 FarbeLog_1.default.ok.withHour("set", "prefix");
 const token = configFile.token;
 FarbeLog_1.default.ok.withHour("set", "token");
+const embedColor = configFile.embedColor;
+FarbeLog_1.default.ok.withHour("set", "embedColor");
 Bot.login(token);
 Bot.on('ready', () => {
     var _a;
     FarbeLog_1.default.ok.withHour("logged", (_a = Bot.user) === null || _a === void 0 ? void 0 : _a.tag);
 });
 Bot.on('messageCreate', (msg) => {
-    commands_1.default.init(msg, prefix);
-    mods_1.default.init(msg);
+    commands_1.default.init(msg, prefix, embedColor);
+    mods_1.default.init(msg, embedColor);
 });
 Bot.on("error", (error) => {
     FarbeLog_1.default.error.withHour("Bot error", "error with Bot:\n" + error);

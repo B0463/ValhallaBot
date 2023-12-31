@@ -16,14 +16,14 @@ function verifyUserPrefix(msg, prefix) {
     else
         return false;
 }
-function init(msg, prefix) {
+function init(msg, prefix, embedColor) {
     if (msg.author.bot)
         return 1;
     if (!verifyUserPrefix(msg, prefix))
         return 1;
     switch (msg.content.split(" ")[0]) {
         default:
-            MAIN_1.default.exec(msg, prefix);
+            MAIN_1.default.exec(msg, prefix, embedColor);
             break;
     }
     return 0;

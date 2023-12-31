@@ -9,12 +9,12 @@ function verifyUserPrefix(msg: Message, prefix): boolean {
         return true;
     } else return false;
 }
-function init(msg: Message, prefix: string): number {
+function init(msg: Message, prefix: string, embedColor: string): number {
     if(msg.author.bot) return 1;
     if(!verifyUserPrefix(msg, prefix)) return 1;
     switch(msg.content.split(" ")[0]) {
         default:
-            MAIN.exec(msg, prefix);
+            MAIN.exec(msg, prefix, embedColor);
             break;
     }
     return 0;

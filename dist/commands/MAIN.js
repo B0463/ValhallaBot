@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
-    exec(msg, prefix) {
+    exec(msg, prefix, embedColor) {
         const embed = embed_1.default.createEmbed({
-            color: "#00ff00",
+            color: embedColor,
             title: "Escravo da Valhalla",
             description: "A bot made with discord.js by ***'! b.0463'***.\nUse ***" + prefix + "help*** to see a list of available commands"
         });

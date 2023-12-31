@@ -1,7 +1,13 @@
-function exec(msg){
+import embedG from "../functions/embed";
+function exec(msg, embedColor){
     if(msg.content.startsWith("# ") || msg.content.startsWith("## ") || msg.content.startsWith("### ")) {
         msg.delete();
-        msg.channel.send(`Não digite letras grande no geral ${msg.author}!`);
+        const embed = embedG.createEmbed({
+            color: embedColor,
+            title: "Não digite letras grande no geral!",
+            description: `Utilize letras normais ${msg.author}`
+        });
+        msg.channel.send({ content: `${msg.author}`, embeds: [embed] });
     }
 }
 export default {

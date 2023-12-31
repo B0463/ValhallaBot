@@ -21,6 +21,8 @@ const prefix = configFile.prefix;
 FarbeLog.ok.withHour("set", "prefix");
 const token = configFile.token;
 FarbeLog.ok.withHour("set", "token");
+const embedColor = configFile.embedColor;
+FarbeLog.ok.withHour("set", "embedColor");
 
 Bot.login(token);
 Bot.on('ready', () => {
@@ -28,8 +30,8 @@ Bot.on('ready', () => {
 });
 
 Bot.on('messageCreate', (msg) => {
-    commands.init(msg, prefix);
-    mods.init(msg);
+    commands.init(msg, prefix, embedColor);
+    mods.init(msg, embedColor);
 });
 
 Bot.on("error", (error) => {

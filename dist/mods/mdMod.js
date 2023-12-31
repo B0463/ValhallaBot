@@ -1,9 +1,18 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-function exec(msg) {
+const embed_1 = __importDefault(require("../functions/embed"));
+function exec(msg, embedColor) {
     if (msg.content.startsWith("# ") || msg.content.startsWith("## ") || msg.content.startsWith("### ")) {
         msg.delete();
-        msg.channel.send(`Não digite letras grande no geral ${msg.author}!`);
+        const embed = embed_1.default.createEmbed({
+            color: embedColor,
+            title: "Não digite letras grande no geral!",
+            description: `Utilize letras normais ${msg.author}`
+        });
+        msg.channel.send({ content: `${msg.author}`, embeds: [embed] });
     }
 }
 exports.default = {
