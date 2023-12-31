@@ -5,10 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const embed_1 = __importDefault(require("../functions/embed"));
 function seqUpps(str) {
-    const upperGroupsNoMap = str.match(/[A-ZÀ-ÖØ-Þ\s]+/g);
-    const upperGroups = upperGroupsNoMap ? upperGroupsNoMap.map((grupo) => grupo.replace(/\s/g, '')) : [];
-    const longestGroup = upperGroups ? upperGroups.reduce((longest, current) => (current.length > longest.length ? current : longest), '') : '';
-    return longestGroup.length;
+    return ((str.match(/[A-ZÀ-ÖØ-Þ\s]+/g) || [])
+        .map((str) => str.replace(/\s/g, "") || "")
+        .sort((a, b) => b.length - a.length)[0] || "").length;
 }
 function exec(msg, embedColor) {
     if (seqUpps(msg.content) >= 10) {
