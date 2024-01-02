@@ -7,6 +7,8 @@ const config_1 = __importDefault(require("../functions/config"));
 const MAIN_1 = __importDefault(require("./MAIN"));
 const status_1 = __importDefault(require("./status"));
 const help_1 = __importDefault(require("./help"));
+const setData_1 = __importDefault(require("./setData"));
+const signal_1 = __importDefault(require("./signal"));
 function verifyUserPrefix(msg) {
     const userCom = msg.content.split(" ")[0];
     const prefixLen = config_1.default.get("prefix").length;
@@ -19,8 +21,10 @@ function verifyUserPrefix(msg) {
     else
         return false;
 }
-function init(msg) {
+function init(msg, Bot) {
     if (msg.author.bot)
+        return 1;
+    if (!msg.guild)
         return 1;
     if (!verifyUserPrefix(msg))
         return 1;
@@ -30,6 +34,12 @@ function init(msg) {
             break;
         case (config_1.default.get("prefix") + "status"):
             status_1.default.exec(msg);
+            break;
+        case (config_1.default.get("prefix") + "setData"):
+            setData_1.default.exec(msg);
+            break;
+        case (config_1.default.get("prefix") + "signal"):
+            signal_1.default.exec(msg, Bot);
             break;
         default:
             MAIN_1.default.exec(msg);

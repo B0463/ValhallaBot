@@ -6,11 +6,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const embed_1 = __importDefault(require("../functions/embed"));
 const config_1 = __importDefault(require("../functions/config"));
 function exec(Bot) {
+    if (config_1.default.getCache("timers.instagram.lastId")) {
+        Bot.channels.cache.get(config_1.default.get("timers.instagram.chatId"))
+            .messages.fetch(config_1.default.getCache("timers.instagram.lastId")).then((msg) => {
+            if (msg) {
+                msg.delete();
+            }
+        });
+    }
     const embed = embed_1.default.createEmbed({
         color: config_1.default.get("embedColor"),
-        title: "Não grite no geral!",
+        title: "Valhalla eSports",
+        description: "Acompanhe a Valhalla também no Instagram!\n**[@tvalhallaesports](https://www.instagram.com/tvalhallaesports/)**",
+        thumbnail: Bot.guilds.cache.get(config_1.default.get("serverId")).iconURL()
     });
-    Bot.channel.send({ content: `${Bot.author}`, embeds: [embed] });
+    Bot.channels.cache.get(config_1.default.get("timers.instagram.chatId")).send({ embeds: [embed] }).then((msg) => { config_1.default.saveCache("timers.instagram.lastId", msg.id); });
 }
 exports.default = {
     exec
