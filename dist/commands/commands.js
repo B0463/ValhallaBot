@@ -26,6 +26,8 @@ function init(msg, Bot) {
         return 1;
     if (!msg.guild)
         return 1;
+    if (msg.guild.id != config_1.default.get("serverId"))
+        return 1;
     if (!verifyUserPrefix(msg))
         return 1;
     switch (msg.content.split(" ")[0]) {

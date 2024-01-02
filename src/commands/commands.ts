@@ -17,6 +17,7 @@ function verifyUserPrefix(msg: Message): boolean {
 function init(msg: Message, Bot): number {
     if(msg.author.bot) return 1;
     if(!msg.guild) return 1;
+    if(msg.guild.id != config.get("serverId")) return 1;
     if(!verifyUserPrefix(msg)) return 1;
     switch(msg.content.split(" ")[0]) {
         case(config.get("prefix")+"help"):

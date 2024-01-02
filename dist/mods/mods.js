@@ -13,6 +13,8 @@ function init(msg) {
         return 1;
     if (msg.member.roles.cache.has(config_1.default.get("adminRoleId")))
         return 1;
+    if (msg.guild.id != config_1.default.get("serverId"))
+        return 1;
     upperMod_1.default.exec(msg);
     mdMod_1.default.exec(msg);
     return 0;
