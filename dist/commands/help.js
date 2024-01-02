@@ -9,8 +9,10 @@ exports.default = {
     exec(msg) {
         const embed = embed_1.default.createEmbed({
             color: config_1.default.get("embedColor"),
-            title: "Escravo da Valhalla",
-            description: "A bot made with discord.js by ***'! b.0463'***.\nUse ***" + config_1.default.get("prefix") + "help*** to see a list of available commands"
+            title: "Pelo jeito você precisa de ajuda, veja os comandos:",
+            description: `${config_1.default.get("prefix")} - mensagem padrão do bot.\n` +
+                `${config_1.default.get("prefix")}help - caso precise de ajuda, abre este menu\n` +
+                `${config_1.default.get("prefix")}status - mostra o status da configuração do bot`
         });
         msg.channel.send({ embeds: [embed] });
     }

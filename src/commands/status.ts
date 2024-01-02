@@ -5,8 +5,11 @@ export default {
     exec(msg: Message) {
         const embed = embedG.createEmbed({
             color: config.get("embedColor"),
-            title: "Escravo da Valhalla",
-            description: "A bot made with discord.js by ***'! b.0463'***.\nUse ***"+config.get("prefix")+"help*** to see a list of available commands"
+            title: "Status",
+            description: "A configuração atual é:\n"+
+                `prefix: ${config.get("prefix")}\n`+
+                `embedColor: ${config.get("embedColor")}\n`
+
         });
         msg.channel.send({ embeds: [embed] });
     }

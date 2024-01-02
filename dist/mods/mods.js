@@ -8,8 +8,8 @@ const mdMod_1 = __importDefault(require("./mdMod"));
 function init(msg, embedColor) {
     if (msg.author.bot)
         return 1;
-    upperMod_1.default.exec(msg, embedColor);
-    mdMod_1.default.exec(msg, embedColor);
+    upperMod_1.default.exec(msg);
+    mdMod_1.default.exec(msg);
     return 0;
 }
 const obj = {

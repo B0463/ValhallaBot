@@ -2,8 +2,8 @@ import upperMod from "./upperMod";
 import mdMod from "./mdMod";
 function init(msg, embedColor): number {
     if(msg.author.bot) return 1;
-    upperMod.exec(msg, embedColor);
-    mdMod.exec(msg, embedColor);
+    upperMod.exec(msg);
+    mdMod.exec(msg);
     return 0;
 }
 const obj = {

@@ -3,27 +3,36 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const config_1 = __importDefault(require("../functions/config"));
 const MAIN_1 = __importDefault(require("./MAIN"));
-function verifyUserPrefix(msg, prefix) {
+const status_1 = __importDefault(require("./status"));
+const help_1 = __importDefault(require("./help"));
+function verifyUserPrefix(msg) {
     const userCom = msg.content.split(" ")[0];
-    const prefixLen = prefix.length;
+    const prefixLen = config_1.default.get("prefix").length;
     if (userCom.length < prefixLen)
         return false;
     const userPrefix = userCom.substring(0, prefixLen);
-    if (userPrefix == prefix) {
+    if (userPrefix == config_1.default.get("prefix")) {
         return true;
     }
     else
         return false;
 }
-function init(msg, prefix, embedColor) {
+function init(msg) {
     if (msg.author.bot)
         return 1;
-    if (!verifyUserPrefix(msg, prefix))
+    if (!verifyUserPrefix(msg))
         return 1;
     switch (msg.content.split(" ")[0]) {
+        case (config_1.default.get("prefix") + "help"):
+            help_1.default.exec(msg);
+            break;
+        case (config_1.default.get("prefix") + "status"):
+            status_1.default.exec(msg);
+            break;
         default:
-            MAIN_1.default.exec(msg, prefix, embedColor);
+            MAIN_1.default.exec(msg);
             break;
     }
     return 0;

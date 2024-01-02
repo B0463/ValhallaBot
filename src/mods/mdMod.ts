@@ -1,9 +1,10 @@
 import embedG from "../functions/embed";
-function exec(msg, embedColor){
+import config from "../functions/config";
+function exec(msg){
     if(msg.content.startsWith("# ") || msg.content.startsWith("## ") || msg.content.startsWith("### ")) {
         msg.delete();
         const embed = embedG.createEmbed({
-            color: embedColor,
+            color: config.get("embedColor"),
             title: "Não digite letras grande no geral!",
             description: `Utilize letras normais ${msg.author}`
         });
