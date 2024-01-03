@@ -65,10 +65,9 @@ Bot.on("guildMemberAdd", (member) => {
             "\n\nAcompanhe a Valhalla também no Instagram!\n**[@tvalhallaesports](https://www.instagram.com/tvalhallaesports/)**",
         thumbnail: Bot.guilds.cache.get(config_1.default.get("serverId")).iconURL()
     });
-    try {
+    if (member.user.dmChannel) {
         member.send({ embeds: [embed] });
     }
-    catch (_a) { }
 });
 Bot.on("error", (error) => {
     FarbeLog_1.default.error.withHour("Bot error", "error with Bot:\n" + error);
