@@ -9,6 +9,11 @@ function exec(msg){
             description: `Utilize letras normais ${msg.author}`
         });
         msg.channel.send({ content: `${msg.author}`, embeds: [embed] });
+        msg.channel.send({ content: `${msg.author}`, embeds: [embed] }).then((modMsg) => {
+            setTimeout(() => {
+                modMsg.delete();
+            }, config.get("mods.timeout") * 1000);
+        });
     }
 }
 export default {

@@ -18,7 +18,11 @@ function exec(msg) {
             title: "Não grite no geral!",
             description: `Utilize menos letras maiusculas ${msg.author}`
         });
-        msg.channel.send({ content: `${msg.author}`, embeds: [embed] });
+        msg.channel.send({ content: `${msg.author}`, embeds: [embed] }).then((modMsg) => {
+            setTimeout(() => {
+                modMsg.delete();
+            }, config_1.default.get("mods.timeout") * 1000);
+        });
     }
 }
 exports.default = {
