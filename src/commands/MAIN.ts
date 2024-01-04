@@ -6,7 +6,7 @@ export default {
         const embed = embedG.createEmbed({
             color: config.get("embedColor"),
             title: "Escravo da Valhalla",
-            description: "A bot made with discord.js by ***'! b.0463'***.\nUse ***"+config.get("prefix")+"help*** to see a list of available commands"
+            description: "Escravo contratado e treinado por ***'! b.0463'***.\nUse ***"+config.get("prefix")+"help*** para ver os comandos"
         });
         msg.channel.send({ embeds: [embed] });
     }

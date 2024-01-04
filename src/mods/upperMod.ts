@@ -6,11 +6,11 @@ function seqUpps(str: string): number {
         .sort((a, b) => b.length - a.length)[0] || "").length;
 }
 function exec(msg){
-    if(seqUpps(msg.content) >= 10) {
+    if(seqUpps(msg.content) >= Number(config.get("mods.upper.maxChar"))) {
         msg.delete();
         const embed = embedG.createEmbed({
             color: config.get("embedColor"),
-            title: "Não grite no geral!",
+            title: "Fala baixo nangue...",
             description: `Utilize menos letras maiusculas ${msg.author}`
         });
         msg.channel.send({ content: `${msg.author}`, embeds: [embed] }).then((modMsg) => {

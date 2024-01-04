@@ -12,7 +12,9 @@ exports.default = {
             title: "Pelo jeito você precisa de ajuda, veja os comandos:",
             description: `${config_1.default.get("prefix")} - mensagem padrão do bot.\n` +
                 `${config_1.default.get("prefix")}help - caso precise de ajuda, abre este menu\n` +
-                `${config_1.default.get("prefix")}status - mostra o status da configuração do bot`
+                `${config_1.default.get("prefix")}status - mostra o status da configuração do bot\n` +
+                `${config_1.default.get("prefix")}setData - define configurações\n` +
+                `${config_1.default.get("prefix")}signal - gera um trigger em algum modulo`
         });
         msg.channel.send({ embeds: [embed] });
     }

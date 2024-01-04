@@ -20,6 +20,11 @@ exports.default = {
                     `...instagram:\n` +
                     `......chatId: ${config_1.default.get("timers.instagram.chatId")}\n` +
                     `......time: ${config_1.default.get("timers.instagram.time")}\n` +
+                    `......offset: ${config_1.default.get("timers.instagram.offset")}\n` +
+                    `mods:\n` +
+                    `...timeout: ${config_1.default.get("mods.timeout")}\n` +
+                    `...upper:\n` +
+                    `......maxChar: ${config_1.default.get("mods.upper.maxChar")}\n` +
                     `A configuração em cache atual é:\n` +
                     `timers:\n` +
                     `...instagram:\n` +

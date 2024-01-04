@@ -11,11 +11,11 @@ function seqUpps(str) {
         .sort((a, b) => b.length - a.length)[0] || "").length;
 }
 function exec(msg) {
-    if (seqUpps(msg.content) >= 10) {
+    if (seqUpps(msg.content) >= Number(config_1.default.get("mods.upper.maxChar"))) {
         msg.delete();
         const embed = embed_1.default.createEmbed({
             color: config_1.default.get("embedColor"),
-            title: "Não grite no geral!",
+            title: "Fala baixo nangue...",
             description: `Utilize menos letras maiusculas ${msg.author}`
         });
         msg.channel.send({ content: `${msg.author}`, embeds: [embed] }).then((modMsg) => {

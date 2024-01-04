@@ -10,7 +10,9 @@ function init(Bot, module): number {
     let timerId;
     switch(module) {
         case("instagram"):
-            timerId = funcTimer(config.get("timers.instagram.time"), () => {instragram.exec(Bot);});
+            timerId = setTimeout(()=>{
+                funcTimer(config.get("timers.instagram.time"), () => {instragram.exec(Bot);});
+            }, config.get("timers.instagram.offset") * 1000);
             config.saveCache("timers.instagram.on", true);
             break;
         default:

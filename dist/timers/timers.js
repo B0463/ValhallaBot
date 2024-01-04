@@ -15,7 +15,9 @@ function init(Bot, module) {
     let timerId;
     switch (module) {
         case ("instagram"):
-            timerId = funcTimer(config_1.default.get("timers.instagram.time"), () => { instragram_1.default.exec(Bot); });
+            timerId = setTimeout(() => {
+                funcTimer(config_1.default.get("timers.instagram.time"), () => { instragram_1.default.exec(Bot); });
+            }, config_1.default.get("timers.instagram.offset") * 1000);
             config_1.default.saveCache("timers.instagram.on", true);
             break;
         default:

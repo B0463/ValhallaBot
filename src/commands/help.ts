@@ -8,7 +8,9 @@ export default {
             title: "Pelo jeito você precisa de ajuda, veja os comandos:",
             description: `${config.get("prefix")} - mensagem padrão do bot.\n`+
                 `${config.get("prefix")}help - caso precise de ajuda, abre este menu\n`+
-                `${config.get("prefix")}status - mostra o status da configuração do bot`
+                `${config.get("prefix")}status - mostra o status da configuração do bot\n`+
+                `${config.get("prefix")}setData - define configurações\n`+
+                `${config.get("prefix")}signal - gera um trigger em algum modulo`
         });
         msg.channel.send({ embeds: [embed] });
     }
