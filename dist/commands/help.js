@@ -14,7 +14,8 @@ exports.default = {
                 `${config_1.default.get("prefix")}help - caso precise de ajuda, abre este menu\n` +
                 `${config_1.default.get("prefix")}status - mostra o status da configuração do bot\n` +
                 `${config_1.default.get("prefix")}setData - define configurações\n` +
-                `${config_1.default.get("prefix")}signal - gera um trigger em algum modulo`
+                `${config_1.default.get("prefix")}signal - gera um trigger em algum modulo\n` +
+                `${config_1.default.get("prefix")}avatar - mostra seu avatar ou de alguem marcado`
         });
         msg.channel.send({ embeds: [embed] });
     }

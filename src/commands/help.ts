@@ -10,7 +10,8 @@ export default {
                 `${config.get("prefix")}help - caso precise de ajuda, abre este menu\n`+
                 `${config.get("prefix")}status - mostra o status da configuração do bot\n`+
                 `${config.get("prefix")}setData - define configurações\n`+
-                `${config.get("prefix")}signal - gera um trigger em algum modulo`
+                `${config.get("prefix")}signal - gera um trigger em algum modulo\n`+
+                `${config.get("prefix")}avatar - mostra seu avatar ou de alguem marcado`
         });
         msg.channel.send({ embeds: [embed] });
     }

@@ -9,6 +9,7 @@ const status_1 = __importDefault(require("./status"));
 const help_1 = __importDefault(require("./help"));
 const setData_1 = __importDefault(require("./setData"));
 const signal_1 = __importDefault(require("./signal"));
+const avatar_1 = __importDefault(require("./avatar"));
 function verifyUserPrefix(msg) {
     const userCom = msg.content.split(" ")[0];
     const prefixLen = config_1.default.get("prefix").length;
@@ -42,6 +43,9 @@ function init(msg, Bot) {
             break;
         case (config_1.default.get("prefix") + "signal"):
             signal_1.default.exec(msg, Bot);
+            break;
+        case (config_1.default.get("prefix") + "avatar"):
+            avatar_1.default.exec(msg, Bot);
             break;
         default:
             MAIN_1.default.exec(msg);
