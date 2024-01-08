@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = __importDefault(require("../functions/config"));
 const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
-    exec(msg, Bot) {
+    exec(msg) {
         let conf = true;
         msg.mentions.users.map((user) => {
             const embed = embed_1.default.createEmbed({

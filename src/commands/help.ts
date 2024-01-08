@@ -11,7 +11,8 @@ export default {
                 `${config.get("prefix")}status - mostra o status da configuração do bot\n`+
                 `${config.get("prefix")}setData - define configurações\n`+
                 `${config.get("prefix")}signal - gera um trigger em algum modulo\n`+
-                `${config.get("prefix")}avatar - mostra seu avatar ou de alguem marcado`
+                `${config.get("prefix")}avatar - mostra seu avatar ou de alguem marcado\n`+
+                `${config.get("prefix")}userinfo - mostra informações do usuario`
         });
         msg.channel.send({ embeds: [embed] });
     }

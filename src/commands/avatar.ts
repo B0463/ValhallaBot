@@ -2,7 +2,7 @@ import { Message } from "discord.js";
 import config from "../functions/config";
 import embedG from "../functions/embed";
 export default {
-    exec(msg: Message, Bot) {
+    exec(msg: Message) {
         let conf=true;
         msg.mentions.users.map((user) => {
             const embed = embedG.createEmbed({
