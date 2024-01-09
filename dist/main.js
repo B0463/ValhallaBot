@@ -53,6 +53,9 @@ Bot.on('messageCreate', (msg) => {
     commands_1.default.init(msg, Bot);
     mods_1.default.init(msg);
 });
+Bot.on("messageUpdate", (oldMsg, newMsg) => {
+    mods_1.default.init(newMsg);
+});
 Bot.on("guildMemberAdd", (member) => {
     const embed = embed_1.default.createEmbed({
         color: config_1.default.get("embedColor"),

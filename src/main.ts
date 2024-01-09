@@ -57,6 +57,9 @@ Bot.on('messageCreate', (msg) => {
     commands.init(msg, Bot);
     mods.init(msg);
 });
+Bot.on("messageUpdate", (oldMsg, newMsg)=>{
+    mods.init(newMsg);
+});
 
 Bot.on("guildMemberAdd", (member) => {
     const embed = embedG.createEmbed({

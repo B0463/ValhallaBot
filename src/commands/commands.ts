@@ -7,6 +7,7 @@ import setData from "./setData";
 import signal from "./signal";
 import avatar from "./avatar";
 import userinfo from "./userinfo";
+import clear from "./clear";
 function verifyUserPrefix(msg: Message): boolean {
     const userCom = msg.content.split(" ")[0];
     const prefixLen = config.get("prefix").length;
@@ -39,6 +40,9 @@ function init(msg: Message, Bot): number {
             break;
         case(config.get("prefix")+"userinfo"):
             userinfo.exec(msg);
+            break;
+        case(config.get("prefix")+"clear"):
+            clear.exec(msg);
             break;
         default:
             MAIN.exec(msg);

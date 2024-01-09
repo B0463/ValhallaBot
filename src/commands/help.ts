@@ -12,7 +12,8 @@ export default {
                 `${config.get("prefix")}setData - define configurações\n`+
                 `${config.get("prefix")}signal - gera um trigger em algum modulo\n`+
                 `${config.get("prefix")}avatar - mostra seu avatar ou de alguem marcado\n`+
-                `${config.get("prefix")}userinfo - mostra informações do usuario`
+                `${config.get("prefix")}userinfo - mostra informações do usuario\n`+
+                `${config.get("prefix")}clear - deleta um numero de msg`
         });
         msg.channel.send({ embeds: [embed] });
     }

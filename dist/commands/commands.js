@@ -11,6 +11,7 @@ const setData_1 = __importDefault(require("./setData"));
 const signal_1 = __importDefault(require("./signal"));
 const avatar_1 = __importDefault(require("./avatar"));
 const userinfo_1 = __importDefault(require("./userinfo"));
+const clear_1 = __importDefault(require("./clear"));
 function verifyUserPrefix(msg) {
     const userCom = msg.content.split(" ")[0];
     const prefixLen = config_1.default.get("prefix").length;
@@ -50,6 +51,9 @@ function init(msg, Bot) {
             break;
         case (config_1.default.get("prefix") + "userinfo"):
             userinfo_1.default.exec(msg);
+            break;
+        case (config_1.default.get("prefix") + "clear"):
+            clear_1.default.exec(msg);
             break;
         default:
             MAIN_1.default.exec(msg);
