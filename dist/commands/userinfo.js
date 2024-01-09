@@ -55,7 +55,7 @@ exports.default = {
                     { name: "**Conta criada em**", value: `\`${getUserCreatedUTCDate(user)}\``, inline: true }
                 ]
             });
-            msg.channel.send({ embeds: [embed] });
+            msg.reply({ embeds: [embed] });
             conf = false;
         });
         if (conf) {
@@ -72,7 +72,7 @@ exports.default = {
                     { name: "**Conta criada em**", value: `\`${getUserCreatedUTCDate(msg.author)}\``, inline: true }
                 ]
             });
-            msg.channel.send({ embeds: [embed] });
+            msg.reply({ embeds: [embed] });
         }
     }
 };

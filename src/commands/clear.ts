@@ -10,7 +10,7 @@ export default {
                 title: "Clear",
                 description: "Você não tem permição para deletar mensagens"
             });
-            msg.channel.send({ embeds: [embed] }).then((clearMsg) => {
+            msg.reply({ embeds: [embed] }).then((clearMsg) => {
                 setTimeout(() => {
                     clearMsg.delete();
                 }, 5000);
@@ -23,7 +23,7 @@ export default {
                 title: "Clear",
                 description: "Coloque o numero de mensagens a serem deletadas 2 - 100"
             });
-            msg.channel.send({ embeds: [embed] }).then((clearMsg) => {
+            msg.reply({ embeds: [embed] }).then((clearMsg) => {
                 setTimeout(() => {
                     clearMsg.delete();
                 }, 5000);
@@ -38,7 +38,7 @@ export default {
                 title: "Clear",
                 description: "numero invalido, utilize 2 - 100"
             });
-            msg.channel.send({ embeds: [embed] }).then((clearMsg) => {
+            msg.reply({ embeds: [embed] }).then((clearMsg) => {
                 setTimeout(() => {
                     clearMsg.delete();
                 }, 5000);
@@ -52,7 +52,7 @@ export default {
                 title: "Clear",
                 description: "numero invalido, utilize 2 - 100"
             });
-            msg.channel.send({ embeds: [embed] }).then((clearMsg) => {
+            msg.reply({ embeds: [embed] }).then((clearMsg) => {
                 setTimeout(() => {
                     clearMsg.delete();
                 }, 5000);
@@ -67,7 +67,7 @@ export default {
                     title: "Clear",
                     description: `${count} mensagens deletadas.`
                 });
-                msg.channel.send({ embeds: [embed] }).then((clearMsg) => {
+                msg.reply({ embeds: [embed] }).then((clearMsg) => {
                     setTimeout(() => {
                         clearMsg.delete();
                     }, 5000);
@@ -75,7 +75,7 @@ export default {
             });
         }
         catch {
-            msg.channel.send("can't delete these messages");
+            msg.reply("can't delete these messages");
         }
     }
 };

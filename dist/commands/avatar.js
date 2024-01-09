@@ -14,7 +14,7 @@ exports.default = {
                 title: "Avatar",
                 image: user.avatarURL({ size: 1024 })
             });
-            msg.channel.send({ embeds: [embed] });
+            msg.reply({ embeds: [embed] });
             conf = false;
         });
         if (conf) {
@@ -23,7 +23,7 @@ exports.default = {
                 title: "Avatar",
                 image: msg.author.avatarURL({ size: 1024 })
             });
-            msg.channel.send({ embeds: [embed] });
+            msg.reply({ embeds: [embed] });
         }
     }
 };

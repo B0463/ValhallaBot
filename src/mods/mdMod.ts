@@ -8,7 +8,7 @@ function exec(msg){
             title: "Não digite letras grande no geral!",
             description: `Utilize letras normais ${msg.author}`
         });
-        msg.channel.send({ content: `${msg.author}`, embeds: [embed] }).then((modMsg) => {
+        msg.reply({ content: `${msg.author}`, embeds: [embed] }).then((modMsg) => {
             setTimeout(() => {
                 modMsg.delete();
             }, config.get("mods.timeout") * 1000);

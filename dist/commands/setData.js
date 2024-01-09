@@ -16,7 +16,7 @@ exports.default = {
                     title: "SetData",
                     description: `dado: ${msgTerm[2]} alterado para: ${msgTerm[3]}\nutilize o ${config_1.default.get("prefix")}signal correto.`
                 });
-                msg.channel.send({ embeds: [embed] });
+                msg.reply({ embeds: [embed] });
             }
             else if (msgTerm[1] == "cache") {
                 config_1.default.saveCache(msgTerm[2], msgTerm[3]);
@@ -25,7 +25,7 @@ exports.default = {
                     title: "SetData",
                     description: `dado: ${msgTerm[2]} alterado para: ${msgTerm[3]}\nutilize o ${config_1.default.get("prefix")}signal correto.`
                 });
-                msg.channel.send({ embeds: [embed] });
+                msg.reply({ embeds: [embed] });
             }
             else {
                 const embed = embed_1.default.createEmbed({
@@ -33,7 +33,7 @@ exports.default = {
                     title: "SetData",
                     description: "utilize static ou cache"
                 });
-                msg.channel.send({ embeds: [embed] });
+                msg.reply({ embeds: [embed] });
             }
         }
         else {
@@ -42,7 +42,7 @@ exports.default = {
                 title: "SetData",
                 description: "Você não tem permição para usar este comando!"
             });
-            msg.channel.send({ embeds: [embed] });
+            msg.reply({ embeds: [embed] });
         }
     }
 };

@@ -8,6 +8,6 @@ export default {
             title: "Escravo da Valhalla",
             description: "Escravo contratado e treinado por ***'! b.0463'***.\nUse ***"+config.get("prefix")+"help*** para ver os comandos"
         });
-        msg.channel.send({ embeds: [embed] });
+        msg.reply({ embeds: [embed] });
     }
 };

@@ -18,7 +18,7 @@ function exec(msg) {
             title: "Fala baixo nangue...",
             description: `Utilize menos letras maiusculas ${msg.author}`
         });
-        msg.channel.send({ content: `${msg.author}`, embeds: [embed] }).then((modMsg) => {
+        msg.reply({ content: `${msg.author}`, embeds: [embed] }).then((modMsg) => {
             setTimeout(() => {
                 modMsg.delete();
             }, config_1.default.get("mods.timeout") * 1000);

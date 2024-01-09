@@ -31,7 +31,7 @@ export default {
                     `User o comando _${config.get("prefix")}setData tipo dado valor_ para alterar, ex:\n`+
                     `${config.get("prefix")}setData static timers.instagram.time 1800`
             });
-            msg.channel.send({ embeds: [embed] });
+            msg.reply({ embeds: [embed] });
         }
         else {
             const embed = embedG.createEmbed({
@@ -39,7 +39,7 @@ export default {
                 title: "Status",
                 description: "Você não tem permição para usar este comando!"
             });
-            msg.channel.send({ embeds: [embed] });
+            msg.reply({ embeds: [embed] });
         }
     }
 };

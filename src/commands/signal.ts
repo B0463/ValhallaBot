@@ -16,7 +16,7 @@ export default {
                                 title: "Signal",
                                 description: "timer.instagram parado com sucesso"
                             });
-                            msg.channel.send({ embeds: [embedStop] });
+                            msg.reply({ embeds: [embedStop] });
                             break;
                         case("start"):
                             timers.init(Bot, "instagram");
@@ -25,7 +25,7 @@ export default {
                                 title: "Signal",
                                 description: "timer.instagram iniciado com sucesso"
                             });
-                            msg.channel.send({ embeds: [embedStart] });
+                            msg.reply({ embeds: [embedStart] });
                             break;
                         default:
                             const embed = embedG.createEmbed({
@@ -33,7 +33,7 @@ export default {
                                 title: "Signal",
                                 description: "digite o signal correto (start stop)"
                             });
-                            msg.channel.send({ embeds: [embed] });
+                            msg.reply({ embeds: [embed] });
                             break;
                     }
                     break;
@@ -43,7 +43,7 @@ export default {
                         title: "Signal",
                         description: "digite o signal correto (timers.instagram)"
                     });
-                    msg.channel.send({ embeds: [embed] });
+                    msg.reply({ embeds: [embed] });
                     break;
             }
         }
@@ -53,7 +53,7 @@ export default {
                 title: "Signal",
                 description: "Você não tem permição para usar este comando!"
             });
-            msg.channel.send({ embeds: [embed] });
+            msg.reply({ embeds: [embed] });
         }
     }
 };

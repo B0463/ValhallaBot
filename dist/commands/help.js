@@ -19,6 +19,6 @@ exports.default = {
                 `${config_1.default.get("prefix")}userinfo - mostra informações do usuario\n` +
                 `${config_1.default.get("prefix")}clear - deleta um numero de msg`
         });
-        msg.channel.send({ embeds: [embed] });
+        msg.reply({ embeds: [embed] });
     }
 };
