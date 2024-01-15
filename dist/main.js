@@ -5,7 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const child_process_1 = require("child_process");
 const FarbeLog_1 = __importDefault(require("./FarbeLog"));
+const ws_1 = __importDefault(require("ws"));
 const sname = "\x1b[1;33mMain\x1b[0m";
+function moduleLog(name) {
+    process.stdout.write(`[ ${name.padEnd(17)} ] `);
+}
 class ProcessManager {
     constructor(scriptPath, name) {
         this.scriptPath = scriptPath;
@@ -20,7 +24,8 @@ class ProcessManager {
                 if (lines[lines.length - 1] == '')
                     lines.pop();
                 lines.forEach((line) => {
-                    console.log(`[ ${this.name.padEnd(17)} ] ${line}`);
+                    moduleLog(this.name);
+                    console.log(line);
                 });
             });
             this.childProcess.stderr.on('data', (data) => {
@@ -28,29 +33,31 @@ class ProcessManager {
                 if (lines[lines.length - 1] == '')
                     lines.pop();
                 lines.forEach((line) => {
-                    console.error(`[ ${this.name.padEnd(17)} ] ${line}`);
+                    moduleLog(this.name);
+                    console.error(line);
                 });
             });
             this.childProcess.on('close', (code) => {
-                process.stdout.write(`[ ${sname.padEnd(17)} ] `);
+                moduleLog(sname);
                 FarbeLog_1.default.info.withHour("Closed", `${this.name} closed with code ${code}`);
             });
-            process.stdout.write(`[ ${sname.padEnd(17)} ] `);
+            moduleLog(sname);
             FarbeLog_1.default.info.withHour("Started", `${this.name}`);
         }
         else {
-            process.stdout.write(`[ ${sname.padEnd(17)} ] `);
+            moduleLog(sname);
             FarbeLog_1.default.warning.withHour("Starting", `${this.name} is running.`);
         }
     }
     stop() {
         if (this.childProcess && this.childProcess.exitCode === null) {
             this.childProcess.kill();
-            process.stdout.write(`[ ${sname.padEnd(17)} ] `);
+            this.childProcess = null;
+            moduleLog(sname);
             FarbeLog_1.default.info.withHour("Closed", `${this.name} closed manually`);
         }
         else {
-            process.stdout.write(`[ ${sname.padEnd(17)} ] `);
+            moduleLog(sname);
             FarbeLog_1.default.warning.withHour("Closed", `${this.name} is not running`);
         }
     }
@@ -62,4 +69,32 @@ serverProcess.start();
 process.on('exit', () => {
     botProcess.stop();
     serverProcess.stop();
+});
+const server = new ws_1.default.Server({ port: 3000 });
+server.on("connection", (ws) => {
+    moduleLog(sname);
+    FarbeLog_1.default.info.withHour("web socket", "new connection");
+    ws.on('message', (message) => {
+        switch (message.toString()) {
+            case "botstart":
+                botProcess.start();
+                break;
+            case "botstop":
+                botProcess.stop();
+                break;
+            case "serverstart":
+                serverProcess.start();
+                break;
+            case "serverstop":
+                serverProcess.stop();
+                break;
+            default:
+                moduleLog(sname);
+                FarbeLog_1.default.warning.withHour("web socket", "wrong argument received");
+        }
+    });
+    ws.on('close', () => {
+        moduleLog(sname);
+        FarbeLog_1.default.info.withHour("web socket", "close connection");
+    });
 });
