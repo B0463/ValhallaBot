@@ -1,10 +1,10 @@
-import FarbeLog from "../functions/FarbeLog";
+import FarbeLog from "../../FarbeLog";
 const fs = require("fs");
 const path = require("path");
 
 let configData = {};
 let cacheData = {};
-const pathDir = "../../config.json";
+const pathDir = "../../../config.json";
 
 function loadConfig() {
     try {

@@ -21,7 +21,7 @@ function getUTCDate(): string {
     if(Seconds < 10) FSeconds = `0${Seconds}`;
     if(ms < 10) Fms = `00${ms}`;
     if(ms < 100) Fms = `0${ms}`;
-    const DateFormated = `UTC ${FDay}/${FMonth}/${FYear} - ${FHour}:${FMinute}:${FSeconds},${Fms}`;
+    const DateFormated = `UTC ${FMonth}/${FDay}/${FYear} - ${FHour}:${FMinute}:${FSeconds},${Fms}`;
     return DateFormated;
 }
 
