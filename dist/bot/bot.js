@@ -73,5 +73,8 @@ Bot.on("guildMemberAdd", (member) => {
     }
 });
 Bot.on("error", (error) => {
-    FarbeLog_1.default.error.withHour("Bot error", "error with Bot:\n" + error);
+    FarbeLog_1.default.error.withHour("client", "error with Bot Client:\n" + error);
+});
+process.on('uncaughtException', (error) => {
+    FarbeLog_1.default.error.withHour("process", `${error.name}:\x1b[0m ${error.message}`);
 });

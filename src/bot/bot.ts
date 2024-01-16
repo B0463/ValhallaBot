@@ -76,5 +76,9 @@ Bot.on("guildMemberAdd", (member) => {
     if(member.user.dmChannel) {member.send({ embeds: [embed] });}
 });
 Bot.on("error", (error) => {
-    FarbeLog.error.withHour("Bot error", "error with Bot:\n"+error);
+    FarbeLog.error.withHour("client", "error with Bot Client:\n"+error);
+});
+
+process.on('uncaughtException', (error: Error) => {
+    FarbeLog.error.withHour("process", `${error.name}:\x1b[0m ${error.message}`);
 });

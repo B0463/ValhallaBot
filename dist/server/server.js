@@ -24,3 +24,6 @@ App.post("/sig/startBot", (req, res) => {
 App.listen(8080, () => {
     FarbeLog_1.default.ok.withHour("listen", "Listening on port 8080 [HTTP]");
 });
+process.on('uncaughtException', (error) => {
+    FarbeLog_1.default.error.withHour("process", `${error.name}:\x1b[0m ${error.message}`);
+});
