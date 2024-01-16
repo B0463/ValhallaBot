@@ -12,13 +12,13 @@ function seqUpps(str) {
 }
 function exec(msg) {
     if (seqUpps(msg.content) >= Number(config_1.default.get("mods.upper.maxChar"))) {
-        msg.delete();
         const embed = embed_1.default.createEmbed({
             color: config_1.default.get("embedColor"),
             title: "Fala baixo nangue...",
             description: `Utilize menos letras maiusculas ${msg.author}`
         });
         msg.reply({ content: `${msg.author}`, embeds: [embed] }).then((modMsg) => {
+            msg.delete();
             setTimeout(() => {
                 modMsg.delete();
             }, config_1.default.get("mods.timeout") * 1000);
