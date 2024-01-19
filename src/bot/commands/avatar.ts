@@ -6,7 +6,7 @@ export default {
         let conf=true;
         msg.mentions.users.map((user) => {
             const embed = embedG.createEmbed({
-                color: config.get("bot.embedColor"),
+                color: config.evalVars(config.get("messages.commands.avatar.mention.color")),
                 title: "Avatar",
                 image: user.avatarURL({ size: 1024 })
             });
@@ -15,7 +15,7 @@ export default {
         });
         if(conf) {
             const embed = embedG.createEmbed({
-                color: config.get("bot.embedColor"),
+                color: config.evalVars(config.get("messages.commands.avatar.self.color")),
                 title: "Avatar",
                 image: msg.author.avatarURL({ size: 1024 })
             });
