@@ -5,9 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = __importDefault(require("../functions/config"));
 const MAIN_1 = __importDefault(require("./MAIN"));
-const status_1 = __importDefault(require("./status"));
 const help_1 = __importDefault(require("./help"));
-const setData_1 = __importDefault(require("./setData"));
 const signal_1 = __importDefault(require("./signal"));
 const avatar_1 = __importDefault(require("./avatar"));
 const userinfo_1 = __importDefault(require("./userinfo"));
@@ -37,12 +35,6 @@ function init(msg, Bot) {
     switch (msg.content.split(" ")[0]) {
         case (config_1.default.get("prefix") + "help"):
             help_1.default.exec(msg);
-            break;
-        case (config_1.default.get("prefix") + "status"):
-            status_1.default.exec(msg);
-            break;
-        case (config_1.default.get("prefix") + "setData"):
-            setData_1.default.exec(msg);
             break;
         case (config_1.default.get("prefix") + "signal"):
             signal_1.default.exec(msg, Bot);

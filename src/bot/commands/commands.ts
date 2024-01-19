@@ -1,9 +1,7 @@
 import { Message } from "discord.js";
 import config from "../functions/config";
 import MAIN from "./MAIN";
-import status from "./status";
 import help from "./help";
-import setData from "./setData";
 import signal from "./signal";
 import avatar from "./avatar";
 import userinfo from "./userinfo";
@@ -26,12 +24,6 @@ function init(msg: Message, Bot): number {
     switch(msg.content.split(" ")[0]) {
         case(config.get("prefix")+"help"):
             help.exec(msg);
-            break;
-        case(config.get("prefix")+"status"):
-            status.exec(msg);
-            break;
-        case(config.get("prefix")+"setData"):
-            setData.exec(msg);
             break;
         case(config.get("prefix")+"signal"):
             signal.exec(msg, Bot);
