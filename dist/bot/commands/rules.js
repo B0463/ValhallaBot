@@ -22,7 +22,7 @@ exports.default = {
                     "<:bola:1197768721477935144>  *Não divulgue outros servidores ou comunidades em nosso servidor, muito menos em privado de algum membro, isso resulta em* **BAN.**\n\n\n" +
                     "> ***Quaisquer regras quebradas, os <@&1074195796641189928> irão decidir a punição correta ao usuário.***"
             });
-            msg.channel.send({ embeds: [embed], content: "|| @ everyone ||" });
+            msg.channel.send({ embeds: [embed], content: "|| @everyone ||" });
             msg.delete();
         }
         else {
