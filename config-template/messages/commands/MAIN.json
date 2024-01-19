@@ -1,5 +1,5 @@
 {
-    "color": "${config.get('embedColor')}",
+    "color": "${get('bot.embedColor')}",
     "title": "Escravo da Vlhalla",
-    "description": "Escravo contratado e treinado por ***'! b.0463'***.\nUse ***${config.get('prefix')}help*** para ver os comandos"
+    "description": "Escravo contratado e treinado por ***'! b.0463'***.\nUse ***${get('bot.prefix')}help*** para ver os comandos"
 }

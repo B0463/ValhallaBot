@@ -6,6 +6,16 @@ let configData = {};
 let cacheData = {};
 const pathDir = path.join(__dirname, "../../../config/");
 
+function evalVars(value: string): string {
+    return value.replace(/\${(.*?)}/g, (match, p1) => {
+        try {
+            return eval(p1);
+        } catch (error) {
+            FarbeLog.error.withHour("load", `Error evaluating dynamic variable: ${error.message}`);
+            return match;
+        }
+    });
+}
 
 function loadConfig() {
     function readFilesRecursively(currentPath, currentConfigData) {
@@ -78,6 +88,7 @@ const obj = {
     update,
     loadConfig,
     getCache,
-    saveCache
+    saveCache,
+    evalVars
 }
 export default obj;
