@@ -9,7 +9,7 @@ const pathDir = path.join(__dirname, "../../../config/");
 function evalVars(value: string): string {
     return value.replace(/\${(.*?)}/g, (match, p1) => {
         try {
-            return eval(p1);
+            return get("vars."+p1);
         } catch (error) {
             FarbeLog.error.withHour("load", `Error evaluating dynamic variable: ${error.message}`);
             return match;
