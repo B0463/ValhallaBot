@@ -1,26 +1,7 @@
 # Escravo da Valhalla
 
-## config.json
+## Config:
 
-```
-{
-  "token": "YOUT_TOKEN_HERE",
-  "prefix": "v!",
-  "embedColor": "#ff0000",
-  "serverId": "1185340632240238602",
-  "adminRoleId": "1190894062073565327",
-  "timers": {
-    "instagram": {
-      "chatId": "1196300247954100244",
-      "time": "30",
-      "offset": "10"
-    }
-  },
-  "mods": {
-    "timeout": "5",
-    "upper": {
-      "maxChar": "10"
-    }
-  }
-}
-```
+Config directory is `config/`, to create, just copy `config-template/` to `config/` and edit your token, prefix etc.
+
+(future update) You can edit message content directly from the files or use the page server.

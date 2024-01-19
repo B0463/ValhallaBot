@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 let configData = {};
 let cacheData = {};
-const pathDir = "../../../config.json";
+const pathDir = "../../../config/config.json";
 function loadConfig() {
     try {
         const rawData = fs.readFileSync(path.join(__dirname, pathDir));

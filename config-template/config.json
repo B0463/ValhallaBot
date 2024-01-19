@@ -1,0 +1,20 @@
+{
+  "token": "YOUR_TOKEN_HERE",
+  "prefix": "v!",
+  "embedColor": "#ff0000",
+  "serverId": "1185340632240238602",
+  "adminRoleId": "1190894062073565327",
+  "timers": {
+    "instagram": {
+      "chatId": "1196300247954100244",
+      "time": "3600",
+      "offset": "1800"
+    }
+  },
+  "mods": {
+    "timeout": "5",
+    "upper": {
+      "maxChar": "12"
+    }
+  }
+}

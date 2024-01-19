@@ -4,7 +4,7 @@ const path = require("path");
 
 let configData = {};
 let cacheData = {};
-const pathDir = "../../../config.json";
+const pathDir = "../../../config/config.json";
 
 function loadConfig() {
     try {
