@@ -8,6 +8,7 @@ import signal from "./signal";
 import avatar from "./avatar";
 import userinfo from "./userinfo";
 import clear from "./clear";
+import rules from "./rules";
 function verifyUserPrefix(msg: Message): boolean {
     const userCom = msg.content.split(" ")[0];
     const prefixLen = config.get("prefix").length;
@@ -43,6 +44,9 @@ function init(msg: Message, Bot): number {
             break;
         case(config.get("prefix")+"clear"):
             clear.exec(msg);
+            break;
+        case(config.get("prefix")+"rules"):
+            rules.exec(msg);
             break;
         default:
             MAIN.exec(msg);
