@@ -3,9 +3,9 @@ import config from "../functions/config";
 import embedG from "../functions/embed";
 export default {
     exec(msg: Message) {
-        if(msg.member.roles.cache.has(config.get("adminRoleId"))) {
+        if(msg.member.roles.cache.has(config.get("bot.adminRoleId"))) {
             const embed = embedG.createEmbed({
-                color: config.get("embedColor"),
+                color: config.get("bot.embedColor"),
                 description: "***FIQUE ATENTO A QUALQUER MUDANÇA NAS REGRAS.***\n\n\n\n"+
                     "**REGRAS.**\n\n\n\n"+
                     "<:bola:1197768721477935144>  *Tenha limites nas brincadeiras.*\n\n"+
@@ -23,7 +23,7 @@ export default {
         }
         else {
             const embed = embedG.createEmbed({
-                color: config.get("embedColor"),
+                color: config.get("bot.embedColor"),
                 title: "Regras",
                 description: "Você não tem permição para usar este comando!"
             });

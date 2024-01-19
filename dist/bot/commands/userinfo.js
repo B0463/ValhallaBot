@@ -43,7 +43,7 @@ exports.default = {
         let conf = true;
         msg.mentions.users.map((user) => {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 author: {
                     name: "userinfo"
                 },
@@ -60,7 +60,7 @@ exports.default = {
         });
         if (conf) {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 author: {
                     name: "userinfo"
                 },

@@ -7,9 +7,9 @@ const config_1 = __importDefault(require("../functions/config"));
 const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
     exec(msg) {
-        if (msg.member.roles.cache.has(config_1.default.get("adminRoleId"))) {
+        if (msg.member.roles.cache.has(config_1.default.get("bot.adminRoleId"))) {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 description: "***FIQUE ATENTO A QUALQUER MUDANÇA NAS REGRAS.***\n\n\n\n" +
                     "**REGRAS.**\n\n\n\n" +
                     "<:bola:1197768721477935144>  *Tenha limites nas brincadeiras.*\n\n" +
@@ -27,7 +27,7 @@ exports.default = {
         }
         else {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 title: "Regras",
                 description: "Você não tem permição para usar este comando!"
             });

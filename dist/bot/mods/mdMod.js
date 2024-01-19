@@ -8,7 +8,7 @@ const config_1 = __importDefault(require("../functions/config"));
 function exec(msg) {
     if (msg.content.startsWith("# ") || msg.content.startsWith("## ") || msg.content.startsWith("### ")) {
         const embed = embed_1.default.createEmbed({
-            color: config_1.default.get("embedColor"),
+            color: config_1.default.get("bot.embedColor"),
             title: "Não digite letras grande no geral!",
             description: `Utilize letras normais ${msg.author}`
         });
@@ -16,7 +16,7 @@ function exec(msg) {
             msg.delete();
             setTimeout(() => {
                 modMsg.delete();
-            }, config_1.default.get("mods.timeout") * 1000);
+            }, config_1.default.get("bot.mods.timeout") * 1000);
         });
     }
 }

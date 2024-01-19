@@ -8,9 +8,9 @@ const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
     exec(msg) {
         const embed = embed_1.default.createEmbed({
-            color: config_1.default.get("embedColor"),
+            color: config_1.default.get("bot.embedColor"),
             title: "Escravo da Valhalla",
-            description: "Escravo contratado e treinado por ***'! b.0463'***.\nUse ***" + config_1.default.get("prefix") + "help*** para ver os comandos"
+            description: "Escravo contratado e treinado por ***'! b.0463'***.\nUse ***" + config_1.default.get("bot.prefix") + "help*** para ver os comandos"
         });
         msg.reply({ embeds: [embed] });
     }

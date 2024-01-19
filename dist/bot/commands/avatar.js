@@ -10,7 +10,7 @@ exports.default = {
         let conf = true;
         msg.mentions.users.map((user) => {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 title: "Avatar",
                 image: user.avatarURL({ size: 1024 })
             });
@@ -19,7 +19,7 @@ exports.default = {
         });
         if (conf) {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 title: "Avatar",
                 image: msg.author.avatarURL({ size: 1024 })
             });

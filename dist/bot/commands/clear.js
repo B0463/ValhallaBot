@@ -7,9 +7,9 @@ const config_1 = __importDefault(require("../functions/config"));
 const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
     exec(msg) {
-        if (!msg.member.roles.cache.has(config_1.default.get("adminRoleId"))) {
+        if (!msg.member.roles.cache.has(config_1.default.get("bot.adminRoleId"))) {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 title: "Clear",
                 description: "Você não tem permição para deletar mensagens"
             });
@@ -23,7 +23,7 @@ exports.default = {
         }
         if (msg.content.split(" ").length != 2) {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 title: "Clear",
                 description: "Coloque o numero de mensagens a serem deletadas 2 - 100"
             });
@@ -39,7 +39,7 @@ exports.default = {
         const count = parseInt(countHaw);
         if (count <= 1 || count > 100 || !countHaw.match("[0-9]+")) {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 title: "Clear",
                 description: "numero invalido, utilize 2 - 100"
             });
@@ -56,7 +56,7 @@ exports.default = {
             const msg2 = msg;
             msg2.channel.bulkDelete(count).then(() => {
                 const embed = embed_1.default.createEmbed({
-                    color: config_1.default.get("embedColor"),
+                    color: config_1.default.get("bot.embedColor"),
                     title: "Clear",
                     description: `${count} mensagens deletadas.`
                 });
@@ -69,7 +69,7 @@ exports.default = {
         }
         catch (_a) {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 title: "Clear",
                 description: `Não é possivel deletar essas mensagens`
             });

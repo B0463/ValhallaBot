@@ -13,11 +13,11 @@ const clear_1 = __importDefault(require("./clear"));
 const rules_1 = __importDefault(require("./rules"));
 function verifyUserPrefix(msg) {
     const userCom = msg.content.split(" ")[0];
-    const prefixLen = config_1.default.get("prefix").length;
+    const prefixLen = config_1.default.get("bot.prefix").length;
     if (userCom.length < prefixLen)
         return false;
     const userPrefix = userCom.substring(0, prefixLen);
-    if (userPrefix == config_1.default.get("prefix")) {
+    if (userPrefix == config_1.default.get("bot.prefix")) {
         return true;
     }
     else
@@ -28,27 +28,27 @@ function init(msg, Bot) {
         return 1;
     if (!msg.guild)
         return 1;
-    if (msg.guild.id != config_1.default.get("serverId"))
+    if (msg.guild.id != config_1.default.get("bot.serverId"))
         return 1;
     if (!verifyUserPrefix(msg))
         return 1;
     switch (msg.content.split(" ")[0]) {
-        case (config_1.default.get("prefix") + "help"):
+        case (config_1.default.get("bot.prefix") + "help"):
             help_1.default.exec(msg);
             break;
-        case (config_1.default.get("prefix") + "signal"):
+        case (config_1.default.get("bot.prefix") + "signal"):
             signal_1.default.exec(msg, Bot);
             break;
-        case (config_1.default.get("prefix") + "avatar"):
+        case (config_1.default.get("bot.prefix") + "avatar"):
             avatar_1.default.exec(msg);
             break;
-        case (config_1.default.get("prefix") + "userinfo"):
+        case (config_1.default.get("bot.prefix") + "userinfo"):
             userinfo_1.default.exec(msg);
             break;
-        case (config_1.default.get("prefix") + "clear"):
+        case (config_1.default.get("bot.prefix") + "clear"):
             clear_1.default.exec(msg);
             break;
-        case (config_1.default.get("prefix") + "rules"):
+        case (config_1.default.get("bot.prefix") + "rules"):
             rules_1.default.exec(msg);
             break;
         default:

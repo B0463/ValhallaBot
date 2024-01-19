@@ -3,7 +3,7 @@ import config from "../functions/config";
 function exec(msg){
     if(msg.content.startsWith("# ") || msg.content.startsWith("## ") || msg.content.startsWith("### ")) {
         const embed = embedG.createEmbed({
-            color: config.get("embedColor"),
+            color: config.get("bot.embedColor"),
             title: "Não digite letras grande no geral!",
             description: `Utilize letras normais ${msg.author}`
         });
@@ -11,7 +11,7 @@ function exec(msg){
             msg.delete();
             setTimeout(() => {
                 modMsg.delete();
-            }, config.get("mods.timeout") * 1000);
+            }, config.get("bot.mods.timeout") * 1000);
         });
     }
 }

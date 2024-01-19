@@ -11,9 +11,9 @@ function seqUpps(str) {
         .sort((a, b) => b.length - a.length)[0] || "").length;
 }
 function exec(msg) {
-    if (seqUpps(msg.content) >= Number(config_1.default.get("mods.upper.maxChar"))) {
+    if (seqUpps(msg.content) >= Number(config_1.default.get("bot.mods.upper.maxChar"))) {
         const embed = embed_1.default.createEmbed({
-            color: config_1.default.get("embedColor"),
+            color: config_1.default.get("bot.embedColor"),
             title: "Fala baixo nangue...",
             description: `Utilize menos letras maiusculas ${msg.author}`
         });
@@ -21,7 +21,7 @@ function exec(msg) {
             msg.delete();
             setTimeout(() => {
                 modMsg.delete();
-            }, config_1.default.get("mods.timeout") * 1000);
+            }, config_1.default.get("bot.mods.timeout") * 1000);
         });
     }
 }

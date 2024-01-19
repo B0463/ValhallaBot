@@ -9,35 +9,35 @@ import clear from "./clear";
 import rules from "./rules";
 function verifyUserPrefix(msg: Message): boolean {
     const userCom = msg.content.split(" ")[0];
-    const prefixLen = config.get("prefix").length;
+    const prefixLen = config.get("bot.prefix").length;
     if(userCom.length < prefixLen) return false;
     const userPrefix = userCom.substring(0, prefixLen);
-    if(userPrefix == config.get("prefix")) {
+    if(userPrefix == config.get("bot.prefix")) {
         return true;
     } else return false;
 }
 function init(msg: Message, Bot): number {
     if(msg.author.bot) return 1;
     if(!msg.guild) return 1;
-    if(msg.guild.id != config.get("serverId")) return 1;
+    if(msg.guild.id != config.get("bot.serverId")) return 1;
     if(!verifyUserPrefix(msg)) return 1;
     switch(msg.content.split(" ")[0]) {
-        case(config.get("prefix")+"help"):
+        case(config.get("bot.prefix")+"help"):
             help.exec(msg);
             break;
-        case(config.get("prefix")+"signal"):
+        case(config.get("bot.prefix")+"signal"):
             signal.exec(msg, Bot);
             break;
-        case(config.get("prefix")+"avatar"):
+        case(config.get("bot.prefix")+"avatar"):
             avatar.exec(msg);
             break;
-        case(config.get("prefix")+"userinfo"):
+        case(config.get("bot.prefix")+"userinfo"):
             userinfo.exec(msg);
             break;
-        case(config.get("prefix")+"clear"):
+        case(config.get("bot.prefix")+"clear"):
             clear.exec(msg);
             break;
-        case(config.get("prefix")+"rules"):
+        case(config.get("bot.prefix")+"rules"):
             rules.exec(msg);
             break;
         default:

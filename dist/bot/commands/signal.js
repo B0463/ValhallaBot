@@ -8,7 +8,7 @@ const embed_1 = __importDefault(require("../functions/embed"));
 const timers_1 = __importDefault(require("../timers/timers"));
 exports.default = {
     exec(msg, Bot) {
-        if (msg.member.roles.cache.has(config_1.default.get("adminRoleId"))) {
+        if (msg.member.roles.cache.has(config_1.default.get("bot.adminRoleId"))) {
             const msgTerm = msg.content.split(" ");
             switch (msgTerm[1]) {
                 case ("timers.instagram"):
@@ -16,7 +16,7 @@ exports.default = {
                         case ("stop"):
                             timers_1.default.close("instagram");
                             const embedStop = embed_1.default.createEmbed({
-                                color: config_1.default.get("embedColor"),
+                                color: config_1.default.get("bot.embedColor"),
                                 title: "Signal",
                                 description: "timer.instagram parado com sucesso"
                             });
@@ -25,7 +25,7 @@ exports.default = {
                         case ("start"):
                             timers_1.default.init(Bot, "instagram");
                             const embedStart = embed_1.default.createEmbed({
-                                color: config_1.default.get("embedColor"),
+                                color: config_1.default.get("bot.embedColor"),
                                 title: "Signal",
                                 description: "timer.instagram iniciado com sucesso"
                             });
@@ -33,7 +33,7 @@ exports.default = {
                             break;
                         default:
                             const embed = embed_1.default.createEmbed({
-                                color: config_1.default.get("embedColor"),
+                                color: config_1.default.get("bot.embedColor"),
                                 title: "Signal",
                                 description: "digite o signal correto (start stop)"
                             });
@@ -48,7 +48,7 @@ exports.default = {
                     break;
                 default:
                     const embed = embed_1.default.createEmbed({
-                        color: config_1.default.get("embedColor"),
+                        color: config_1.default.get("bot.embedColor"),
                         title: "Signal",
                         description: "digite o signal correto (timers.instagram)"
                     });
@@ -63,7 +63,7 @@ exports.default = {
         }
         else {
             const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
+                color: config_1.default.get("bot.embedColor"),
                 title: "Signal",
                 description: "Você não tem permição para usar este comando!"
             });

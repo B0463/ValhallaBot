@@ -4,9 +4,9 @@ import embedG from "../functions/embed";
 import { parse } from "path";
 export default {
     exec(msg: Message) {
-        if(!msg.member.roles.cache.has(config.get("adminRoleId"))) {
+        if(!msg.member.roles.cache.has(config.get("bot.adminRoleId"))) {
             const embed = embedG.createEmbed({
-                color: config.get("embedColor"),
+                color: config.get("bot.embedColor"),
                 title: "Clear",
                 description: "Você não tem permição para deletar mensagens"
             });
@@ -20,7 +20,7 @@ export default {
         }
         if(msg.content.split(" ").length != 2) {
             const embed = embedG.createEmbed({
-                color: config.get("embedColor"),
+                color: config.get("bot.embedColor"),
                 title: "Clear",
                 description: "Coloque o numero de mensagens a serem deletadas 2 - 100"
             });
@@ -36,7 +36,7 @@ export default {
         const count = parseInt(countHaw);
         if(count<=1 || count>100 || !countHaw.match("[0-9]+")) {
             const embed = embedG.createEmbed({
-                color: config.get("embedColor"),
+                color: config.get("bot.embedColor"),
                 title: "Clear",
                 description: "numero invalido, utilize 2 - 100"
             });
@@ -53,7 +53,7 @@ export default {
             const msg2: any = msg;
             msg2.channel.bulkDelete(count).then(()=>{
                 const embed = embedG.createEmbed({
-                    color: config.get("embedColor"),
+                    color: config.get("bot.embedColor"),
                     title: "Clear",
                     description: `${count} mensagens deletadas.`
                 });
@@ -66,7 +66,7 @@ export default {
         }
         catch {
             const embed = embedG.createEmbed({
-                color: config.get("embedColor"),
+                color: config.get("bot.embedColor"),
                 title: "Clear",
                 description: `Não é possivel deletar essas mensagens`
             });

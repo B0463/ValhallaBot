@@ -4,37 +4,65 @@ const path = require("path");
 
 let configData = {};
 let cacheData = {};
-const pathDir = "../../../config/config.json";
+const pathDir = path.join(__dirname, "../../../config/");
+
 
 function loadConfig() {
-    try {
-        const rawData = fs.readFileSync(path.join(__dirname, pathDir));
-        configData = JSON.parse(rawData);
-    } catch (error) {
-        FarbeLog.error.withHour('import', error.message);
+    function readFilesRecursively(currentPath, currentConfigData) {
+        const files = fs.readdirSync(currentPath);
+        files.forEach((file) => {
+            const filePath = path.join(currentPath, file);
+            if (fs.statSync(filePath).isDirectory()) {
+                const folderName = path.parse(file).name;
+                currentConfigData[folderName] = {};
+                readFilesRecursively(filePath, currentConfigData[folderName]);
+            } else if (path.extname(file) === '.json') {
+                try {
+                    const data = fs.readFileSync(filePath, 'utf8');
+                    const configObject = JSON.parse(data);
+                    const configName = path.parse(file).name;
+                    currentConfigData[configName] = configObject;
+                } catch (error) {
+                    FarbeLog.error.withHour('import', `error loading file ${file}: ${error.message}`);
+                }
+            }
+        });
     }
+    readFilesRecursively(pathDir, configData);
 }
 
 function saveConfig() {
-    try {
-        const jsonData = JSON.stringify(configData, null, 2);
-        fs.writeFileSync(path.join(__dirname, pathDir), jsonData);
-    } catch (error) {
-        FarbeLog.error.withHour('import', error.message);
+    function saveFilesRecursively(currentPath, currentConfigData) {
+        for (const [key, value] of Object.entries(currentConfigData)) {
+            if (typeof value === 'object' && !Array.isArray(value)) {
+                const folderPath = path.join(currentPath, key);
+                fs.mkdirSync(folderPath, { recursive: true });
+                saveFilesRecursively(folderPath, value);
+            } else {
+                const fileName = `${key}.json`;
+                const filePath = path.join(currentPath, fileName);
+                try {
+                    fs.writeFileSync(filePath, JSON.stringify(value, null, 2));
+                } catch (error) {
+                    FarbeLog.error.withHour('import', `error saving file ${fileName}: ${error.message}`);
+                }
+            }
+        }
     }
+    fs.mkdirSync(pathDir, { recursive: true });
+    saveFilesRecursively(pathDir, configData);
 }
 
 function get(key: string): any {
     return key.split('.').reduce((acc, curr) => (acc && curr in acc ? acc[curr] : undefined), configData);
 }
-
 function update(key: string, data: any) {
     const keys = key.split('.');
     const lastKey = keys.pop();
     const nestedObject = keys.reduce((acc, curr) => (acc[curr] = acc[curr] || {}), configData);
     nestedObject[lastKey!] = data;
     saveConfig();
-  }
+}
 function getCache(key) {
     return key.split('.').reduce((acc, curr) => (acc && curr in acc ? acc[curr] : undefined), cacheData);
 }

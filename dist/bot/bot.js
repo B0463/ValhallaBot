@@ -18,7 +18,7 @@ FarbeLog_1.default.ok.withHour("import", "config");
 const embed_1 = __importDefault(require("./functions/embed"));
 FarbeLog_1.default.ok.withHour("import", "embed");
 config_1.default.loadConfig();
-FarbeLog_1.default.ok.withHour("import", "load ../config.json");
+FarbeLog_1.default.ok.withHour("import", "load ../config/*");
 const Bot = new discord_js_1.Client({
     intents: [
         discord_js_1.GatewayIntentBits.Guilds,
@@ -43,7 +43,7 @@ const Bot = new discord_js_1.Client({
     ]
 });
 FarbeLog_1.default.ok.withHour("set", "Bot and intents");
-Bot.login(config_1.default.get("token"));
+Bot.login(config_1.default.get("bot.token"));
 Bot.on('ready', () => {
     var _a;
     FarbeLog_1.default.ok.withHour("logged", (_a = Bot.user) === null || _a === void 0 ? void 0 : _a.tag);
@@ -58,7 +58,7 @@ Bot.on("messageUpdate", (oldMsg, newMsg) => {
 });
 Bot.on("guildMemberAdd", (member) => {
     const embed = embed_1.default.createEmbed({
-        color: config_1.default.get("embedColor"),
+        color: config_1.default.get("bot.embedColor"),
         title: "Valhalla eSports Server",
         description: "Seja bem vindo ao servidor da Valhalla eSports!\n\n" +
             "Não esqueça de ler as regras.\n" +
@@ -66,7 +66,7 @@ Bot.on("guildMemberAdd", (member) => {
             "Siga as instruções dos admins.\n\n" +
             "Converse, crie amigos, e abra oportunidades na sua carreira de jogos.\n" +
             "\n\nAcompanhe a Valhalla também no Instagram!\n**[@tvalhallaesports](https://www.instagram.com/tvalhallaesports/)**",
-        thumbnail: Bot.guilds.cache.get(config_1.default.get("serverId")).iconURL()
+        thumbnail: Bot.guilds.cache.get(config_1.default.get("bot.serverId")).iconURL()
     });
     if (member.user.dmChannel) {
         member.send({ embeds: [embed] });
