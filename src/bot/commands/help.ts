@@ -8,12 +8,11 @@ export default {
             title: "Pelo jeito você precisa de ajuda, veja os comandos:",
             description: `${config.get("prefix")} - mensagem padrão do bot.\n`+
                 `${config.get("prefix")}help - caso precise de ajuda, abre este menu\n`+
-                `${config.get("prefix")}status - mostra o status da configuração do bot\n`+
-                `${config.get("prefix")}setData - define configurações\n`+
                 `${config.get("prefix")}signal - gera um trigger em algum modulo\n`+
                 `${config.get("prefix")}avatar - mostra seu avatar ou de alguem marcado\n`+
                 `${config.get("prefix")}userinfo - mostra informações do usuario\n`+
-                `${config.get("prefix")}clear - deleta um numero de msg`
+                `${config.get("prefix")}clear - deleta um numero de msg\n`+
+                `${config.get("prefix")}rules - mostra a mensagem de regra`
         });
         msg.reply({ embeds: [embed] });
     }
