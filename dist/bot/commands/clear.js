@@ -14,6 +14,7 @@ exports.default = {
                 description: "Você não tem permição para deletar mensagens"
             });
             msg.reply({ embeds: [embed] }).then((clearMsg) => {
+                msg.delete();
                 setTimeout(() => {
                     clearMsg.delete();
                 }, 5000);
@@ -27,6 +28,7 @@ exports.default = {
                 description: "Coloque o numero de mensagens a serem deletadas 2 - 100"
             });
             msg.reply({ embeds: [embed] }).then((clearMsg) => {
+                msg.delete();
                 setTimeout(() => {
                     clearMsg.delete();
                 }, 5000);
@@ -34,27 +36,15 @@ exports.default = {
             return 0;
         }
         const countHaw = msg.content.split(" ")[1];
-        if (!countHaw.match("[0-9]+")) {
-            const embed = embed_1.default.createEmbed({
-                color: config_1.default.get("embedColor"),
-                title: "Clear",
-                description: "numero invalido, utilize 2 - 100"
-            });
-            msg.reply({ embeds: [embed] }).then((clearMsg) => {
-                setTimeout(() => {
-                    clearMsg.delete();
-                }, 5000);
-            });
-            return 0;
-        }
         const count = parseInt(countHaw);
-        if (count <= 1 || count > 100) {
+        if (count <= 1 || count > 100 || !countHaw.match("[0-9]+")) {
             const embed = embed_1.default.createEmbed({
                 color: config_1.default.get("embedColor"),
                 title: "Clear",
                 description: "numero invalido, utilize 2 - 100"
             });
             msg.reply({ embeds: [embed] }).then((clearMsg) => {
+                msg.delete();
                 setTimeout(() => {
                     clearMsg.delete();
                 }, 5000);
@@ -62,22 +52,32 @@ exports.default = {
             return 0;
         }
         try {
+            msg.delete();
             const msg2 = msg;
-            msg2.channel.bulkDelete(count + 1).then(() => {
+            msg2.channel.bulkDelete(count).then(() => {
                 const embed = embed_1.default.createEmbed({
                     color: config_1.default.get("embedColor"),
                     title: "Clear",
                     description: `${count} mensagens deletadas.`
                 });
-                msg.reply({ embeds: [embed] }).then((clearMsg) => {
+                msg.channel.send({ embeds: [embed], content: `<@${msg.author.id}>` }).then((clearMsg) => {
                     setTimeout(() => {
                         clearMsg.delete();
-                    }, 5000);
+                    }, 3000);
                 });
             });
         }
         catch (_a) {
-            msg.reply("can't delete these messages");
+            const embed = embed_1.default.createEmbed({
+                color: config_1.default.get("embedColor"),
+                title: "Clear",
+                description: `Não é possivel deletar essas mensagens`
+            });
+            msg.channel.send({ embeds: [embed], content: `<@${msg.author.id}>` }).then((clearMsg) => {
+                setTimeout(() => {
+                    clearMsg.delete();
+                }, 3000);
+            });
         }
     }
 };

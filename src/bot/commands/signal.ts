@@ -33,7 +33,12 @@ export default {
                                 title: "Signal",
                                 description: "digite o signal correto (start stop)"
                             });
-                            msg.reply({ embeds: [embed] });
+                            msg.reply({ embeds: [embed] }).then((repMsg)=>{
+                                msg.delete();
+                                setTimeout(()=>{
+                                    repMsg.delete();
+                                }, 5000);
+                            });
                             break;
                     }
                     break;
@@ -43,7 +48,12 @@ export default {
                         title: "Signal",
                         description: "digite o signal correto (timers.instagram)"
                     });
-                    msg.reply({ embeds: [embed] });
+                    msg.reply({ embeds: [embed] }).then((repMsg)=>{
+                        msg.delete();
+                        setTimeout(()=>{
+                            repMsg.delete();
+                        }, 5000);
+                    });
                     break;
             }
         }
@@ -53,7 +63,12 @@ export default {
                 title: "Signal",
                 description: "Você não tem permição para usar este comando!"
             });
-            msg.reply({ embeds: [embed] });
+            msg.reply({ embeds: [embed] }).then((repMsg)=>{
+                msg.delete();
+                setTimeout(()=>{
+                    repMsg.delete();
+                }, 5000);
+            });
         }
     }
 };

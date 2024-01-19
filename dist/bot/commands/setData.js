@@ -33,7 +33,12 @@ exports.default = {
                     title: "SetData",
                     description: "utilize static ou cache"
                 });
-                msg.reply({ embeds: [embed] });
+                msg.reply({ embeds: [embed] }).then((repMsg) => {
+                    msg.delete();
+                    setTimeout(() => {
+                        repMsg.delete();
+                    }, 5000);
+                });
             }
         }
         else {
@@ -42,7 +47,12 @@ exports.default = {
                 title: "SetData",
                 description: "Você não tem permição para usar este comando!"
             });
-            msg.reply({ embeds: [embed] });
+            msg.reply({ embeds: [embed] }).then((repMsg) => {
+                msg.delete();
+                setTimeout(() => {
+                    repMsg.delete();
+                }, 5000);
+            });
         }
     }
 };
