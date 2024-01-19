@@ -38,6 +38,7 @@ class ProcessManager {
                 });
             });
             this.childProcess.on('close', (code) => {
+                this.childProcess = null;
                 moduleLog(sname);
                 FarbeLog_1.default.info.withHour("Closed", `${this.name} closed with code ${code}`);
             });
@@ -51,8 +52,7 @@ class ProcessManager {
     }
     stop() {
         if (this.childProcess && this.childProcess.exitCode === null) {
-            this.childProcess.kill('SIGINT');
-            this.childProcess = null;
+            this.childProcess.kill();
             moduleLog(sname);
             FarbeLog_1.default.info.withHour("Closed", `${this.name} closed manually`);
         }
