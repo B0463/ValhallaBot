@@ -27,7 +27,3 @@ App.listen(8080, () => {
 process.on('uncaughtException', (error) => {
     FarbeLog_1.default.error.withHour("process", `${error.name}:\x1b[0m ${error.message}`);
 });
-process.on('SIGTERM', () => {
-    console.log('SIGTERM');
-    process.exit(0);
-});
