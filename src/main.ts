@@ -46,7 +46,7 @@ class ProcessManager {
     }
     public stop() {
         if(this.childProcess && this.childProcess.exitCode === null) {
-            process.kill(this.childProcess.pid);
+            process.kill(this.childProcess.pid, 'SIGTERM');
             moduleLog(sname);
             FarbeLog.info.withHour("Closed", `${this.name} closed manually`);
         } else {

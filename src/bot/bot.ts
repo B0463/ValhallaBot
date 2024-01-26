@@ -82,3 +82,8 @@ Bot.on("error", (error) => {
 process.on('uncaughtException', (error: Error) => {
     FarbeLog.error.withHour("process", `${error.name}:\x1b[0m ${error.message}`);
 });
+
+process.on('SIGTERM', () => {
+    console.log('SIGTERM');
+    process.exit(0);
+});
