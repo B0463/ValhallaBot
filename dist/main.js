@@ -18,7 +18,7 @@ class ProcessManager {
     }
     start() {
         if (!this.childProcess || this.childProcess.exitCode !== null) {
-            this.childProcess = (0, child_process_1.exec)(`node ${this.scriptPath}`);
+            this.childProcess = (0, child_process_1.exec)(`node ${this.scriptPath}`, { shell: '/bin/bash' });
             this.childProcess.stdout.on('data', (data) => {
                 const lines = data.split("\n");
                 if (lines[lines.length - 1] == '')
@@ -52,7 +52,7 @@ class ProcessManager {
     }
     stop() {
         if (this.childProcess && this.childProcess.exitCode === null) {
-            (0, child_process_1.exec)(`kill ${this.childProcess.pid}`);
+            (0, child_process_1.exec)(`kill ${this.childProcess.pid}`, { shell: '/bin/bash' });
             moduleLog(sname);
             FarbeLog_1.default.info.withHour("Closed", `${this.name} closed manually`);
         }
