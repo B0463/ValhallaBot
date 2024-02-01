@@ -7,11 +7,9 @@ const config_1 = __importDefault(require("../functions/config"));
 const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
     exec(msg) {
-        const embed = embed_1.default.createEmbed({
-            color: config_1.default.evalVars(config_1.default.get("messages.commands.MAIN.color")),
-            title: config_1.default.evalVars(config_1.default.get("messages.commands.MAIN.title")),
-            description: config_1.default.evalVars(config_1.default.get("messages.commands.MAIN.description"))
+        config_1.default.loadMsg("MAIN").then((content) => {
+            const embed = embed_1.default.createEmbed(content);
+            msg.reply({ embeds: [embed] });
         });
-        msg.reply({ embeds: [embed] });
     }
 };

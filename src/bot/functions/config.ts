@@ -1,10 +1,21 @@
 import FarbeLog from "../../FarbeLog";
+import sqlite3 from "sqlite3";
 const fs = require("fs");
 const path = require("path");
 
 let configData = {};
 let cacheData = {};
 const pathDir = path.join(__dirname, "../../../config/");
+const dbPathDir = path.join(__dirname, "../../../DB/");
+
+const msgDB = new sqlite3.Database(`${dbPathDir}messages.db`);
+msgDB.run(`
+    CREATE TABLE IF NOT EXISTS commands (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        content TEXT
+    )
+`);
 
 function evalVars(value: string): string {
     return value.replace(/\${(.*?)}/g, (match, p1) => {
@@ -82,6 +93,18 @@ function saveCache(key, data) {
     const nestedObject = keys.reduce((acc, curr) => (acc[curr] = acc[curr] || {}), cacheData);
     nestedObject[lastKey!] = data;
 }
+function loadMsg(msg: string) {
+    return new Promise((resolve, reject) => {
+        msgDB.get("SELECT content FROM commands WHERE name = ?", [msg], (err, row: any) => {
+            if (err) {
+                FarbeLog.error.withHour('database', `Error retrieving data: ${err.message}`);
+                reject(err);
+            } else {
+                resolve(JSON.parse(row.content));
+            }
+        });
+    })
+}
 
 const obj = {
     get,
@@ -89,6 +112,7 @@ const obj = {
     loadConfig,
     getCache,
     saveCache,
-    evalVars
+    evalVars,
+    loadMsg
 }
 export default obj;

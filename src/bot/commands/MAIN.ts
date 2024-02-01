@@ -3,11 +3,9 @@ import config from "../functions/config";
 import embedG from "../functions/embed";
 export default {
     exec(msg: Message) {
-        const embed = embedG.createEmbed({
-            color: config.evalVars(config.get("messages.commands.MAIN.color")),
-            title: config.evalVars(config.get("messages.commands.MAIN.title")),
-            description: config.evalVars(config.get("messages.commands.MAIN.description"))
+        config.loadMsg("MAIN").then((content: any)=>{
+            const embed = embedG.createEmbed(content);
+            msg.reply({ embeds: [embed] });
         });
-        msg.reply({ embeds: [embed] });
     }
 };
