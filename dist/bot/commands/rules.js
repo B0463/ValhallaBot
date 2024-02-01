@@ -8,24 +8,22 @@ const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
     exec(msg) {
         if (msg.member.roles.cache.has(config_1.default.get("bot.adminRoleId"))) {
-            const embed = embed_1.default.createEmbed({
-                color: config_1.default.evalVars(config_1.default.get("messages.commands.rules.color")),
-                description: config_1.default.evalVars(config_1.default.get("messages.commands.rules.description")),
+            config_1.default.loadMsg("rules").then((content) => {
+                const embed = embed_1.default.createEmbed(content.ok);
+                msg.reply({ embeds: [embed], content: config_1.default.evalVars(content.ok.content) }).then(() => {
+                    msg.delete();
+                });
             });
-            msg.channel.send({ embeds: [embed], content: config_1.default.evalVars(config_1.default.get("messages.commands.rules.content")), });
-            msg.delete();
         }
         else {
-            const embed = embed_1.default.createEmbed({
-                color: config_1.default.evalVars(config_1.default.get("messages.commands.rules.noPermission.color")),
-                title: "Regras",
-                description: config_1.default.evalVars(config_1.default.get("messages.commands.rules.noPermission.description"))
-            });
-            msg.reply({ embeds: [embed] }).then((repMsg) => {
-                msg.delete();
-                setTimeout(() => {
-                    repMsg.delete();
-                }, parseInt(config_1.default.evalVars(config_1.default.get("messages.commands.rules.noPermission.timeout"))));
+            config_1.default.loadMsg("rules").then((content) => {
+                const embed = embed_1.default.createEmbed(content.noPermission);
+                msg.reply({ embeds: [embed] }).then((repMsg) => {
+                    msg.delete();
+                    setTimeout(() => {
+                        repMsg.delete();
+                    }, parseInt(config_1.default.evalVars(content.noPermission.timeout)));
+                });
             });
         }
     }

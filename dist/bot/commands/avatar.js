@@ -9,21 +9,19 @@ exports.default = {
     exec(msg) {
         let conf = true;
         msg.mentions.users.map((user) => {
-            const embed = embed_1.default.createEmbed({
-                color: config_1.default.evalVars(config_1.default.get("messages.commands.avatar.mention.color")),
-                title: "Avatar",
-                image: user.avatarURL({ size: 1024 })
+            config_1.default.loadMsg("avatar").then((content) => {
+                content.mention.image = user.avatarURL({ size: 1024 });
+                const embed = embed_1.default.createEmbed(content.mention);
+                msg.reply({ embeds: [embed] });
             });
-            msg.reply({ embeds: [embed] });
             conf = false;
         });
         if (conf) {
-            const embed = embed_1.default.createEmbed({
-                color: config_1.default.evalVars(config_1.default.get("messages.commands.avatar.self.color")),
-                title: "Avatar",
-                image: msg.author.avatarURL({ size: 1024 })
+            config_1.default.loadMsg("avatar").then((content) => {
+                content.self.image = msg.author.avatarURL({ size: 1024 });
+                const embed = embed_1.default.createEmbed(content.self);
+                msg.reply({ embeds: [embed] });
             });
-            msg.reply({ embeds: [embed] });
         }
     }
 };

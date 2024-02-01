@@ -5,21 +5,19 @@ export default {
     exec(msg: Message) {
         let conf=true;
         msg.mentions.users.map((user) => {
-            const embed = embedG.createEmbed({
-                color: config.evalVars(config.get("messages.commands.avatar.mention.color")),
-                title: "Avatar",
-                image: user.avatarURL({ size: 1024 })
+            config.loadMsg("avatar").then((content: any)=>{
+                content.mention.image = user.avatarURL({ size: 1024 });
+                const embed = embedG.createEmbed(content.mention);
+                msg.reply({ embeds: [embed] });
             });
-            msg.reply({ embeds: [embed] });
             conf=false;
         });
         if(conf) {
-            const embed = embedG.createEmbed({
-                color: config.evalVars(config.get("messages.commands.avatar.self.color")),
-                title: "Avatar",
-                image: msg.author.avatarURL({ size: 1024 })
+            config.loadMsg("avatar").then((content: any)=>{
+                content.self.image = msg.author.avatarURL({ size: 1024 });
+                const embed = embedG.createEmbed(content.self);
+                msg.reply({ embeds: [embed] });
             });
-            msg.reply({ embeds: [embed] });
         }
     }
 };

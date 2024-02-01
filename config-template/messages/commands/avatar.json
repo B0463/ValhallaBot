@@ -1,8 +1,0 @@
-{
-    "mention": {
-        "color": "${embedColor}"
-    },
-    "self": {
-        "color": "${embedColor}"
-    }
-}
