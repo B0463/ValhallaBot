@@ -4,4 +4,8 @@
 
 Config directory is `config/`, to create, just copy `config-template/` to `config/` and edit your token, prefix etc.
 
-(future update) You can edit message content directly from the files or use the page server.
+# next update:
+
+## Database
+
+use DB sqlite, in /DB/messages.db for messages, /DB/internal/config.db for configs and /DB/internal/users.db for users of bot
