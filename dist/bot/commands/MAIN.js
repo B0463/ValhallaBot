@@ -7,7 +7,7 @@ const config_1 = __importDefault(require("../functions/config"));
 const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
     exec(msg) {
-        config_1.default.loadMsg("MAIN").then((content) => {
+        config_1.default.loadMsg("commands", "MAIN").then((content) => {
             const embed = embed_1.default.createEmbed(content);
             msg.reply({ embeds: [embed] });
         });

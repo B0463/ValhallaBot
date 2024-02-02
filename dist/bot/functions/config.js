@@ -4,21 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const FarbeLog_1 = __importDefault(require("../../FarbeLog"));
-const sqlite3_1 = __importDefault(require("sqlite3"));
+const database_1 = __importDefault(require("../../database"));
 const fs = require("fs");
 const path = require("path");
 let configData = {};
 let cacheData = {};
 const pathDir = path.join(__dirname, "../../../config/");
-const dbPathDir = path.join(__dirname, "../../../DB/");
-const msgDB = new sqlite3_1.default.Database(`${dbPathDir}messages.db`);
-msgDB.run(`
-    CREATE TABLE IF NOT EXISTS commands (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        content TEXT
-    )
-`);
 function evalVars(value) {
     return value.replace(/\${(.*?)}/g, (match, p1) => {
         try {
@@ -97,18 +88,8 @@ function saveCache(key, data) {
     const nestedObject = keys.reduce((acc, curr) => (acc[curr] = acc[curr] || {}), cacheData);
     nestedObject[lastKey] = data;
 }
-function loadMsg(msg) {
-    return new Promise((resolve, reject) => {
-        msgDB.get("SELECT content FROM commands WHERE name = ?", [msg], (err, row) => {
-            if (err) {
-                FarbeLog_1.default.error.withHour('database', `Error retrieving data: ${err.message}`);
-                reject(err);
-            }
-            else {
-                resolve(JSON.parse(row.content));
-            }
-        });
-    });
+function loadMsg(table, msg) {
+    return database_1.default.loadMsg(table, msg);
 }
 const obj = {
     get,

@@ -4,7 +4,7 @@ import embedG from "../functions/embed";
 export default {
     exec(msg: Message) {
         if(msg.member.roles.cache.has(config.get("bot.adminRoleId"))) {
-            config.loadMsg("rules").then((content: any)=>{
+            config.loadMsg("commands", "rules").then((content: any)=>{
                 const embed = embedG.createEmbed(content.ok);
                 msg.reply({ embeds: [embed], content: config.evalVars(content.ok.content) }).then(()=>{
                     msg.delete();
@@ -12,7 +12,7 @@ export default {
             });
         }
         else {
-            config.loadMsg("rules").then((content: any)=>{
+            config.loadMsg("commands", "rules").then((content: any)=>{
                 const embed = embedG.createEmbed(content.noPermission);
                 msg.reply({ embeds: [embed] }).then((repMsg)=>{
                     msg.delete();

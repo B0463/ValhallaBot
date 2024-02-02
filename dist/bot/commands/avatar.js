@@ -9,7 +9,7 @@ exports.default = {
     exec(msg) {
         let conf = true;
         msg.mentions.users.map((user) => {
-            config_1.default.loadMsg("avatar").then((content) => {
+            config_1.default.loadMsg("commands", "avatar").then((content) => {
                 content.mention.image = user.avatarURL({ size: 1024 });
                 const embed = embed_1.default.createEmbed(content.mention);
                 msg.reply({ embeds: [embed] });
@@ -17,7 +17,7 @@ exports.default = {
             conf = false;
         });
         if (conf) {
-            config_1.default.loadMsg("avatar").then((content) => {
+            config_1.default.loadMsg("commands", "avatar").then((content) => {
                 content.self.image = msg.author.avatarURL({ size: 1024 });
                 const embed = embed_1.default.createEmbed(content.self);
                 msg.reply({ embeds: [embed] });

@@ -8,7 +8,7 @@ const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
     exec(msg) {
         if (msg.member.roles.cache.has(config_1.default.get("bot.adminRoleId"))) {
-            config_1.default.loadMsg("rules").then((content) => {
+            config_1.default.loadMsg("commands", "rules").then((content) => {
                 const embed = embed_1.default.createEmbed(content.ok);
                 msg.reply({ embeds: [embed], content: config_1.default.evalVars(content.ok.content) }).then(() => {
                     msg.delete();
@@ -16,7 +16,7 @@ exports.default = {
             });
         }
         else {
-            config_1.default.loadMsg("rules").then((content) => {
+            config_1.default.loadMsg("commands", "rules").then((content) => {
                 const embed = embed_1.default.createEmbed(content.noPermission);
                 msg.reply({ embeds: [embed] }).then((repMsg) => {
                     msg.delete();
