@@ -6,6 +6,7 @@ const path = require("path");
 let configData = {};
 let cacheData = {};
 const pathDir = path.join(__dirname, "../../../config/");
+db.inicialize();
 
 function evalVars(value: string): string {
     return value.replace(/\${(.*?)}/g, (match, p1) => {
