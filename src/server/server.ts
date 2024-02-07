@@ -1,15 +1,7 @@
 import FarbeLog from "../FarbeLog";
-FarbeLog.ok.withHour("import", "FarbeLog");
-
 import Express from "express";
-FarbeLog.ok.withHour("import", "Express");
-
 import WebSocket from "ws";
-FarbeLog.ok.withHour("import", "web socket");
-
 const App = Express();
-FarbeLog.ok.withHour("set", "App");
-
 const ws = new WebSocket('ws://localhost:3000');
 
 App.get("/", (req, res)=>{res.status(200).send("none");});

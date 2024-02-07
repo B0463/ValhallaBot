@@ -4,21 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const FarbeLog_1 = __importDefault(require("../FarbeLog"));
-FarbeLog_1.default.ok.withHour("import", "FarbeLog");
 const discord_js_1 = require("discord.js");
-FarbeLog_1.default.ok.withHour("import", "discord.js");
 const commands_1 = __importDefault(require("./commands/commands"));
-FarbeLog_1.default.ok.withHour("import", "commands");
 const mods_1 = __importDefault(require("./mods/mods"));
-FarbeLog_1.default.ok.withHour("import", "mods");
 const timers_1 = __importDefault(require("./timers/timers"));
-FarbeLog_1.default.ok.withHour("import", "timers");
 const config_1 = __importDefault(require("./functions/config"));
-FarbeLog_1.default.ok.withHour("import", "config");
 const embed_1 = __importDefault(require("./functions/embed"));
-FarbeLog_1.default.ok.withHour("import", "embed");
+;
 config_1.default.loadConfig();
-FarbeLog_1.default.ok.withHour("import", "load ../config/*");
 const Bot = new discord_js_1.Client({
     intents: [
         discord_js_1.GatewayIntentBits.Guilds,
@@ -42,7 +35,6 @@ const Bot = new discord_js_1.Client({
         discord_js_1.GatewayIntentBits.AutoModerationExecution
     ]
 });
-FarbeLog_1.default.ok.withHour("set", "Bot and intents");
 Bot.login(config_1.default.get("bot.token"));
 Bot.on('ready', () => {
     var _a;

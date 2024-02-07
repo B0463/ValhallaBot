@@ -1,26 +1,11 @@
 import FarbeLog from "../FarbeLog";
-FarbeLog.ok.withHour("import", "FarbeLog");
-
 import { Client, GatewayIntentBits, GatewayDispatchEvents, Message } from 'discord.js';
-FarbeLog.ok.withHour("import", "discord.js");
-
 import commands from "./commands/commands";
-FarbeLog.ok.withHour("import", "commands");
-
 import mods from "./mods/mods";
-FarbeLog.ok.withHour("import", "mods");
-
 import timers from "./timers/timers";
-FarbeLog.ok.withHour("import", "timers");
-
 import config from "./functions/config"
-FarbeLog.ok.withHour("import", "config");
-
-import embedG from "./functions/embed";
-FarbeLog.ok.withHour("import", "embed");
-
+import embedG from "./functions/embed";;
 config.loadConfig();
-FarbeLog.ok.withHour("import", "load ../config/*");
 
 const Bot = new Client({
     intents: [
@@ -45,8 +30,6 @@ const Bot = new Client({
         GatewayIntentBits.AutoModerationExecution
     ]
 });
-FarbeLog.ok.withHour("set", "Bot and intents");
-
 Bot.login(config.get("bot.token"));
 Bot.on('ready', () => {
     FarbeLog.ok.withHour("logged", Bot.user?.tag);
