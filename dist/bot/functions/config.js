@@ -10,6 +10,7 @@ const path = require("path");
 let configData = {};
 let cacheData = {};
 const pathDir = path.join(__dirname, "../../../config/");
+database_1.default.inicialize();
 function evalVars(value) {
     return value.replace(/\${(.*?)}/g, (match, p1) => {
         try {
