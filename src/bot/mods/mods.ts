@@ -5,6 +5,7 @@ function init(msg): number {
     if(msg.author.bot) return 1;
     if(!msg.guild) return 1;
     if(msg.member.roles.cache.has(config.get("bot.adminRoleId"))) return 1;
+    if(msg.id == "769752272875290634") return 1;
     if(msg.guild.id != config.get("bot.serverId")) return 1;
     upperMod.exec(msg);
     mdMod.exec(msg);

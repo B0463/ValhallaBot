@@ -13,6 +13,8 @@ function init(msg) {
         return 1;
     if (msg.member.roles.cache.has(config_1.default.get("bot.adminRoleId")))
         return 1;
+    if (msg.id == "769752272875290634")
+        return 1;
     if (msg.guild.id != config_1.default.get("bot.serverId"))
         return 1;
     upperMod_1.default.exec(msg);

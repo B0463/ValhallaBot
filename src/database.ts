@@ -61,6 +61,7 @@ function inicialize() {
     createTables(cache);
     FarbeLog.ok.withHour("DB", "inicialized");
 }
+
 function loadMsg(table: string, msg: string) {
     return new Promise((resolve, reject) => {
         if(table != "commands" && table != "timers" && table != "mods") {
