@@ -1,5 +1,6 @@
 import FarbeLog from "./FarbeLog";
 import readline from 'readline';
+import wsServer from "./wsServer";
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -9,8 +10,8 @@ const rl = readline.createInterface({
 function startTerminal(botProcess, serverProcess) {
     rl.on('line', (input) => {
         rl.pause();
-        console.log(`< ${input}`);
-        switch(input) {
+        console.log(`< ${input.split(" ")[0]}`);
+        switch(input.split(" ")[0]) {
             case "botstart":
                 botProcess.start();
                 break;
@@ -23,6 +24,8 @@ function startTerminal(botProcess, serverProcess) {
             case "serverstop":
                 serverProcess.stop();
                 break;
+            case "send":
+                wsServer.sendmsg(input.substring(5));
             default:
         }
         rl.resume();

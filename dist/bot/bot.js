@@ -10,7 +10,7 @@ const mods_1 = __importDefault(require("./mods/mods"));
 const timers_1 = __importDefault(require("./timers/timers"));
 const config_1 = __importDefault(require("./functions/config"));
 const embed_1 = __importDefault(require("./functions/embed"));
-;
+const ws_1 = __importDefault(require("ws"));
 config_1.default.loadConfig();
 const Bot = new discord_js_1.Client({
     intents: [
@@ -66,6 +66,11 @@ Bot.on("guildMemberAdd", (member) => {
 });
 Bot.on("error", (error) => {
     FarbeLog_1.default.error.withHour("client", "error with Bot Client:\n" + error);
+});
+const ws = new ws_1.default('ws://localhost:3000');
+ws.on('message', (message) => {
+    const channel = Bot.channels.cache.get(config_1.default.get("bot.timers.instagram.chatId"));
+    channel.send(message.toString());
 });
 process.on('uncaughtException', (error) => {
     FarbeLog_1.default.error.withHour("process", `${error.name}:\x1b[0m ${error.message}`);

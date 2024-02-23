@@ -7,6 +7,7 @@ const ws_1 = __importDefault(require("ws"));
 const FarbeLog_1 = __importDefault(require("./FarbeLog"));
 const terminal_1 = __importDefault(require("./terminal"));
 let sname = "";
+let wsConnetsList = [];
 function setSname(iname) {
     sname = iname;
 }
@@ -22,6 +23,7 @@ function startServer(botProcess, serverProcess) {
         FarbeLog_1.default.info.withHour("web socket", "new connection");
         terminal_1.default.rl.resume();
         terminal_1.default.rl.prompt();
+        wsConnetsList.push(ws);
         ws.on('message', (message) => {
             switch (message.toString()) {
                 case "botstart":
@@ -55,8 +57,14 @@ function startServer(botProcess, serverProcess) {
         });
     });
 }
+function sendmsg(msg) {
+    for (let i = 0; i < wsConnetsList.length; i++) {
+        wsConnetsList[i].send(msg);
+    }
+}
 const obj = {
     startServer,
-    setSname
+    setSname,
+    sendmsg
 };
 exports.default = obj;

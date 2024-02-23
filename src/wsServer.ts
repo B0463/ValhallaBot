@@ -3,6 +3,7 @@ import FarbeLog from "./FarbeLog";
 import terminal from "./terminal";
 
 let sname = "";
+let wsConnetsList = [];
 
 function setSname(iname) {
     sname = iname;
@@ -10,7 +11,6 @@ function setSname(iname) {
 function moduleLog(name: string) {
     process.stdout.write(`[ ${name.padEnd(17)} ] `);
 }
-
 function startServer(botProcess, serverProcess) {
     const server =  new WebSocket.Server({ port: 3000 });
     server.on("connection", (ws)=>{
@@ -20,6 +20,7 @@ function startServer(botProcess, serverProcess) {
         FarbeLog.info.withHour("web socket", "new connection");
         terminal.rl.resume();
         terminal.rl.prompt();
+        wsConnetsList.push(ws);
         ws.on('message', (message) => {
             switch(message.toString()) {
                 case "botstart":
@@ -53,9 +54,16 @@ function startServer(botProcess, serverProcess) {
         });
     });
 }
+function sendmsg(msg) {
+    for(let i = 0; i < wsConnetsList.length; i++) {
+        wsConnetsList[i].send(msg);
+    }
+}
+
 
 const obj = {
     startServer,
-    setSname
+    setSname,
+    sendmsg
 }
 export default obj;

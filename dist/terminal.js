@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const readline_1 = __importDefault(require("readline"));
+const wsServer_1 = __importDefault(require("./wsServer"));
 const rl = readline_1.default.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -11,8 +12,8 @@ const rl = readline_1.default.createInterface({
 function startTerminal(botProcess, serverProcess) {
     rl.on('line', (input) => {
         rl.pause();
-        console.log(`< ${input}`);
-        switch (input) {
+        console.log(`< ${input.split(" ")[0]}`);
+        switch (input.split(" ")[0]) {
             case "botstart":
                 botProcess.start();
                 break;
@@ -25,6 +26,8 @@ function startTerminal(botProcess, serverProcess) {
             case "serverstop":
                 serverProcess.stop();
                 break;
+            case "send":
+                wsServer_1.default.sendmsg(input.substring(5));
             default:
         }
         rl.resume();

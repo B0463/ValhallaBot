@@ -1,10 +1,11 @@
 import FarbeLog from "../FarbeLog";
-import { Client, GatewayIntentBits, GatewayDispatchEvents, Message } from 'discord.js';
+import { Client, GatewayIntentBits, GatewayDispatchEvents, Message, TextChannel } from 'discord.js';
 import commands from "./commands/commands";
 import mods from "./mods/mods";
 import timers from "./timers/timers";
-import config from "./functions/config"
-import embedG from "./functions/embed";;
+import config from "./functions/config";
+import embedG from "./functions/embed";
+import WebSocket from "ws";
 config.loadConfig();
 
 const Bot = new Client({
@@ -61,6 +62,13 @@ Bot.on("guildMemberAdd", (member) => {
 Bot.on("error", (error) => {
     FarbeLog.error.withHour("client", "error with Bot Client:\n"+error);
 });
+
+const ws = new WebSocket('ws://localhost:3000');
+ws.on('message', (message) => {
+    const channel: TextChannel = Bot.channels.cache.get(config.get("bot.timers.instagram.chatId")) as TextChannel;
+    channel.send(message.toString());
+});
+
 
 process.on('uncaughtException', (error: Error) => {
     FarbeLog.error.withHour("process", `${error.name}:\x1b[0m ${error.message}`);
