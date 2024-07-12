@@ -4,9 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const readline_1 = __importDefault(require("readline"));
+const input = process.stdin;
+const output = process.stdout;
 const rl = readline_1.default.createInterface({
-    input: process.stdin,
-    output: process.stdout
+    input: input,
+    output: output
 });
 function startTerminal(botProcess, serverProcess) {
     rl.on('line', (input) => {

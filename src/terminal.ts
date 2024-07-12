@@ -1,9 +1,12 @@
 import FarbeLog from "./FarbeLog";
 import readline from 'readline';
 
+const input: any = process.stdin;
+const output: any = process.stdout;
+
 const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+    input: input,
+    output: output
 });
 
 function startTerminal(botProcess, serverProcess) {
