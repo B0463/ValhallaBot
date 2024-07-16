@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = __importDefault(require("../functions/config"));
 const upperMod_1 = __importDefault(require("./upperMod"));
+const wordMod_1 = __importDefault(require("./wordMod"));
 const mdMod_1 = __importDefault(require("./mdMod"));
 function init(msg) {
     if (msg.author.bot)
@@ -17,6 +18,7 @@ function init(msg) {
         return 1;
     upperMod_1.default.exec(msg);
     mdMod_1.default.exec(msg);
+    wordMod_1.default.exec(msg);
     return 0;
 }
 const obj = {

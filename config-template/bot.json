@@ -16,6 +16,12 @@
     "timeout": "5",
     "upper": {
       "maxChar": "8"
+    },
+    "word": {
+      "blocks": [
+        "hitler",
+        "nigga"
+      ]
     }
   }
 }
