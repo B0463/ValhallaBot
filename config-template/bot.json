@@ -3,7 +3,8 @@
   "prefix": "v!",
   "embedColor": "#ff0000",
   "serverId": "1185340632240238602",
-  "adminRoleId": "1190894062073565327",
+  "bypassRolesId": ["1261236414004068403", "1074195511982174238"],
+  "bypassUsersId": ["769752272875290634"],
   "timers": {
     "instagram": {
       "chatId": "1196300247954100244",
@@ -14,7 +15,7 @@
   "mods": {
     "timeout": "5",
     "upper": {
-      "maxChar": "12"
+      "maxChar": "8"
     }
   }
 }

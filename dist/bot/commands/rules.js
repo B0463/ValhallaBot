@@ -7,7 +7,7 @@ const config_1 = __importDefault(require("../functions/config"));
 const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
     exec(msg) {
-        if (msg.member.roles.cache.has(config_1.default.get("bot.adminRoleId"))) {
+        if (config_1.default.hasBypass(msg)) {
             config_1.default.loadMsg("commands", "rules").then((content) => {
                 const embed = embed_1.default.createEmbed(content.ok);
                 msg.reply({ embeds: [embed], content: config_1.default.evalVars(content.ok.content) }).then(() => {

@@ -8,7 +8,7 @@ const embed_1 = __importDefault(require("../functions/embed"));
 const timers_1 = __importDefault(require("../timers/timers"));
 exports.default = {
     exec(msg, Bot) {
-        if (msg.member.roles.cache.has(config_1.default.get("bot.adminRoleId"))) {
+        if (config_1.default.hasBypass(msg)) {
             const msgTerm = msg.content.split(" ");
             switch (msgTerm[1]) {
                 case ("timers.instagram"):

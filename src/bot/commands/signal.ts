@@ -4,7 +4,7 @@ import embedG from "../functions/embed";
 import timers from "../timers/timers";
 export default {
     exec(msg: Message, Bot) {
-        if(msg.member.roles.cache.has(config.get("bot.adminRoleId"))) {
+        if(config.hasBypass(msg)) {
             const msgTerm = msg.content.split(" ");
             switch(msgTerm[1]) {
                 case("timers.instagram"):

@@ -3,7 +3,7 @@ import config from "../functions/config";
 import embedG from "../functions/embed";
 export default {
     exec(msg: Message) {
-        if(msg.member.roles.cache.has(config.get("bot.adminRoleId"))) {
+        if(config.hasBypass(msg)) {
             config.loadMsg("commands", "rules").then((content: any)=>{
                 const embed = embedG.createEmbed(content.ok);
                 msg.reply({ embeds: [embed], content: config.evalVars(content.ok.content) }).then(()=>{

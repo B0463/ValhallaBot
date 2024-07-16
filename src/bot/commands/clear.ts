@@ -4,7 +4,7 @@ import embedG from "../functions/embed";
 import { parse } from "path";
 export default {
     exec(msg: Message) {
-        if(!msg.member.roles.cache.has(config.get("bot.adminRoleId"))) {
+        if(!config.hasBypass(msg)) {
             const embed = embedG.createEmbed({
                 color: config.get("bot.embedColor"),
                 title: "Clear",

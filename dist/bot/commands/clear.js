@@ -7,7 +7,7 @@ const config_1 = __importDefault(require("../functions/config"));
 const embed_1 = __importDefault(require("../functions/embed"));
 exports.default = {
     exec(msg) {
-        if (!msg.member.roles.cache.has(config_1.default.get("bot.adminRoleId"))) {
+        if (!config_1.default.hasBypass(msg)) {
             const embed = embed_1.default.createEmbed({
                 color: config_1.default.get("bot.embedColor"),
                 title: "Clear",

@@ -87,6 +87,18 @@ function saveCache(key, data) {
 function loadMsg(table: string, msg: string) {
     return db.loadMsg(table, msg);
 }
+function hasBypass(msg) {
+    const member = msg.member.roles.cache;
+    const bypassRolesId = get("bot.bypassRolesId");
+    const bypassUsersId = get("bot.bypassUsersId");
+    for(let i=0;i<bypassRolesId.length;i++) {
+        if(member.has(bypassRolesId[i])) return 1;
+    }
+    for(let i=0;i<bypassUsersId.length;i++) {
+        if(msg.author.id == bypassUsersId[i]) return 1;
+    }
+    return 0;
+}
 
 const obj = {
     get,
@@ -95,6 +107,7 @@ const obj = {
     getCache,
     saveCache,
     evalVars,
-    loadMsg
+    loadMsg,
+    hasBypass
 }
 export default obj;
