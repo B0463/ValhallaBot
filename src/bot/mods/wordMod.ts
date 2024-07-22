@@ -1,8 +1,8 @@
 import embedG from "../functions/embed";
 import config from "../functions/config";
 function exec(msg){
-    const blockWords = config.get("bot.mods.word.blocks");
-    if(blockWords.some(word => msg.content.toUpperCase().includes(word.toUpperCase()))) {
+    const blockWords = new Set(config.get("bot.mods.word.blocks"));
+    if(msg.content.toUpperCase().split(" ").some(word => blockWords.has(word))) {
         const embed = embedG.createEmbed({
             color: config.get("bot.embedColor"),
             title: "Está palavra não está permitida.",

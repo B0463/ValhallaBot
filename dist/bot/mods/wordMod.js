@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const embed_1 = __importDefault(require("../functions/embed"));
 const config_1 = __importDefault(require("../functions/config"));
 function exec(msg) {
-    const blockWords = config_1.default.get("bot.mods.word.blocks");
-    if (blockWords.some(word => msg.content.toUpperCase().includes(word.toUpperCase()))) {
+    const blockWords = new Set(config_1.default.get("bot.mods.word.blocks"));
+    if (msg.content.toUpperCase().split(" ").some(word => blockWords.has(word))) {
         const embed = embed_1.default.createEmbed({
             color: config_1.default.get("bot.embedColor"),
             title: "Está palavra não está permitida.",
